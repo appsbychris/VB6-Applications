@@ -1,5 +1,9 @@
-(I have put this description in the zip, so if you want nicley formated description, download the project.)
-Happy new year!  I have been working on this project for a long time, about 4/5 months or so.  This program is of a card game called Tic.  The game is similar to rummy, but is still quite different.  Full rules of the game are included in the program.  Also, this is a multiplayer program that uses Winsock.
+# VB6-Applications
+VB 6 applications I've made about 10-15 years ago
+
+#Multiplayer Card Game Called Tic
+
+This program is of a card game called Tic.  The game is similar to rummy, but is still quite different.  Full rules of the game are included in the program.  Also, this is a multiplayer program that uses Winsock.
 In the zip, there are 2 projects, the server and the game board.
 Includeds:
 -Transparent Textboxes
@@ -17,8 +21,3 @@ On the Game Board project, i decieded to make my own menu, so i used a combonati
 One more thing...
 As in a real game of cards, players sometimes cheat.  Well, i have added in a secret command(well not so secret anymore) that allows players to cheat if they really really want to.  The cheating goes undetected by other players.
 All the code is commented where it needs to be commented.
-This has gone through about 1 and a half months of beta testings, so it should be pretty bug free.  If you find any bugs with it, leave a comment here, or email be at theendorbunker@attbi.com.
-Please leave comments here on what you think about this, or email me your thoughts at theendorbunker@attbi.com. Thanks.
-If you like this code, place a vote on it.
-Visit the offical site at: http://www.geocities.com/thrice_twice/index.html
-Thanks for looking!
