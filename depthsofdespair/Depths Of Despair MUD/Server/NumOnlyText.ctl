@@ -64,13 +64,13 @@ m = txtMain.SelStart
 a = txtMain.Text
 For i = 1 To Len(a)
     Select Case Asc(Mid$(a, i, 1))
-        Case 48 To 57, 45
+        Case 48 To 57, 45, 46
         
         Case Else
             
             Mid$(a, i, 1) = " "
     End Select
-    If DE Then DoEvents
+    DoEvents
 Next
 If bB Then
     If DCount(a, "-") > 1 Then
@@ -79,7 +79,7 @@ If bB Then
                 Case 45
                     Mid$(a, i, 1) = " "
             End Select
-            If DE Then DoEvents
+            DoEvents
         Next
     End If
 End If

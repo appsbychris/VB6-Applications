@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "tabctl32.ocx"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
 Begin VB.Form frmClasses 
    BorderStyle     =   1  'Fixed Single
@@ -60,6 +60,7 @@ Begin VB.Form frmClasses
       _ExtentY        =   8070
       _Version        =   393216
       Style           =   1
+      Tab             =   1
       TabHeight       =   520
       ShowFocusRect   =   0   'False
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -73,64 +74,47 @@ Begin VB.Form frmClasses
       EndProperty
       TabCaption(0)   =   "General"
       TabPicture(0)   =   "frmClasses.frx":0000
-      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "lblLabel(0)"
-      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "lblLabel(1)"
-      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "lblLabel(4)"
-      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "lblLabel(5)"
-      Tab(0).Control(3).Enabled=   0   'False
       Tab(0).Control(4)=   "lblLabel(6)"
-      Tab(0).Control(4).Enabled=   0   'False
       Tab(0).Control(5)=   "lblLabel(7)"
-      Tab(0).Control(5).Enabled=   0   'False
       Tab(0).Control(6)=   "lblLabel(8)"
-      Tab(0).Control(6).Enabled=   0   'False
       Tab(0).Control(7)=   "lblLabel(10)"
-      Tab(0).Control(7).Enabled=   0   'False
       Tab(0).Control(8)=   "lblLabel(12)"
-      Tab(0).Control(8).Enabled=   0   'False
       Tab(0).Control(9)=   "lblLabel(26)"
-      Tab(0).Control(9).Enabled=   0   'False
       Tab(0).Control(10)=   "txtMaxMana"
-      Tab(0).Control(10).Enabled=   0   'False
       Tab(0).Control(11)=   "txtMinMana"
-      Tab(0).Control(11).Enabled=   0   'False
       Tab(0).Control(12)=   "txtMagicLevel"
-      Tab(0).Control(12).Enabled=   0   'False
       Tab(0).Control(13)=   "txtEXP"
-      Tab(0).Control(13).Enabled=   0   'False
       Tab(0).Control(14)=   "txtID"
-      Tab(0).Control(14).Enabled=   0   'False
       Tab(0).Control(15)=   "txtName"
-      Tab(0).Control(15).Enabled=   0   'False
       Tab(0).Control(16)=   "cboWeaponType"
-      Tab(0).Control(16).Enabled=   0   'False
       Tab(0).Control(17)=   "cboArmorType"
-      Tab(0).Control(17).Enabled=   0   'False
       Tab(0).Control(18)=   "cboType"
-      Tab(0).Control(18).Enabled=   0   'False
       Tab(0).Control(19)=   "cboMagicLevel"
-      Tab(0).Control(19).Enabled=   0   'False
       Tab(0).ControlCount=   20
       TabCaption(1)   =   "Class Bonuses"
       TabPicture(1)   =   "frmClasses.frx":001C
-      Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "flgFlags"
+      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).Control(0)=   "ssClassB"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "cboFlags"
-      Tab(1).Control(2)=   "ssClassB"
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "flgFlags"
+      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).ControlCount=   3
       TabCaption(2)   =   "Flags"
       TabPicture(2)   =   "frmClasses.frx":0038
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "lstClassFlags"
-      Tab(2).Control(1)=   "flgOpts"
-      Tab(2).Control(2)=   "cmdRemove(5)"
-      Tab(2).Control(3)=   "cmdAdd(5)"
-      Tab(2).Control(4)=   "cboCFlags"
-      Tab(2).Control(5)=   "lblHelp(5)"
+      Tab(2).Control(0)=   "lblHelp(5)"
+      Tab(2).Control(1)=   "cboCFlags"
+      Tab(2).Control(2)=   "cmdAdd(5)"
+      Tab(2).Control(3)=   "cmdRemove(5)"
+      Tab(2).Control(4)=   "flgOpts"
+      Tab(2).Control(5)=   "lstClassFlags"
       Tab(2).ControlCount=   6
       Begin MSComctlLib.ListView lstClassFlags 
          Height          =   3135
@@ -168,7 +152,7 @@ Begin VB.Form frmClasses
       End
       Begin ServerEditor.FlagOptions flgFlags 
          Height          =   375
-         Left            =   -71640
+         Left            =   3360
          TabIndex        =   58
          Top             =   480
          Width           =   735
@@ -198,8 +182,8 @@ Begin VB.Form frmClasses
          EndProperty
          Height          =   315
          ItemData        =   "frmClasses.frx":0054
-         Left            =   -74880
-         List            =   "frmClasses.frx":007F
+         Left            =   120
+         List            =   "frmClasses.frx":008B
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   11
@@ -208,7 +192,7 @@ Begin VB.Form frmClasses
       End
       Begin TabDlg.SSTab ssClassB 
          Height          =   3495
-         Left            =   -74880
+         Left            =   120
          TabIndex        =   12
          Top             =   960
          Width           =   7695
@@ -229,7 +213,7 @@ Begin VB.Form frmClasses
             Strikethrough   =   0   'False
          EndProperty
          TabCaption(0)   =   "Base Bonus"
-         TabPicture(0)   =   "frmClasses.frx":012C
+         TabPicture(0)   =   "frmClasses.frx":0170
          Tab(0).ControlEnabled=   -1  'True
          Tab(0).Control(0)=   "lblHelp(0)"
          Tab(0).Control(0).Enabled=   0   'False
@@ -241,44 +225,44 @@ Begin VB.Form frmClasses
          Tab(0).Control(3).Enabled=   0   'False
          Tab(0).ControlCount=   4
          TabCaption(1)   =   "Beginner Bonus"
-         TabPicture(1)   =   "frmClasses.frx":0148
+         TabPicture(1)   =   "frmClasses.frx":018C
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "lblHelp(1)"
-         Tab(1).Control(1)=   "lblLabel(3)"
-         Tab(1).Control(2)=   "lstBegin"
-         Tab(1).Control(3)=   "txtClsPts(1)"
-         Tab(1).Control(4)=   "cmdAdd(1)"
-         Tab(1).Control(5)=   "cmdRemove(1)"
+         Tab(1).Control(0)=   "cmdRemove(1)"
+         Tab(1).Control(1)=   "cmdAdd(1)"
+         Tab(1).Control(2)=   "txtClsPts(1)"
+         Tab(1).Control(3)=   "lstBegin"
+         Tab(1).Control(4)=   "lblLabel(3)"
+         Tab(1).Control(5)=   "lblHelp(1)"
          Tab(1).ControlCount=   6
          TabCaption(2)   =   "Intermediate Bonus"
-         TabPicture(2)   =   "frmClasses.frx":0164
+         TabPicture(2)   =   "frmClasses.frx":01A8
          Tab(2).ControlEnabled=   0   'False
-         Tab(2).Control(0)=   "lblHelp(2)"
-         Tab(2).Control(1)=   "lblLabel(13)"
-         Tab(2).Control(2)=   "lstInter"
-         Tab(2).Control(3)=   "txtClsPts(2)"
-         Tab(2).Control(4)=   "cmdAdd(2)"
-         Tab(2).Control(5)=   "cmdRemove(2)"
+         Tab(2).Control(0)=   "cmdRemove(2)"
+         Tab(2).Control(1)=   "cmdAdd(2)"
+         Tab(2).Control(2)=   "txtClsPts(2)"
+         Tab(2).Control(3)=   "lstInter"
+         Tab(2).Control(4)=   "lblLabel(13)"
+         Tab(2).Control(5)=   "lblHelp(2)"
          Tab(2).ControlCount=   6
          TabCaption(3)   =   "Master Bonus"
-         TabPicture(3)   =   "frmClasses.frx":0180
+         TabPicture(3)   =   "frmClasses.frx":01C4
          Tab(3).ControlEnabled=   0   'False
-         Tab(3).Control(0)=   "lblHelp(3)"
-         Tab(3).Control(1)=   "lblLabel(14)"
-         Tab(3).Control(2)=   "lstMaster"
-         Tab(3).Control(3)=   "txtClsPts(3)"
-         Tab(3).Control(4)=   "cmdAdd(3)"
-         Tab(3).Control(5)=   "cmdRemove(3)"
+         Tab(3).Control(0)=   "cmdRemove(3)"
+         Tab(3).Control(1)=   "cmdAdd(3)"
+         Tab(3).Control(2)=   "txtClsPts(3)"
+         Tab(3).Control(3)=   "lstMaster"
+         Tab(3).Control(4)=   "lblLabel(14)"
+         Tab(3).Control(5)=   "lblHelp(3)"
          Tab(3).ControlCount=   6
          TabCaption(4)   =   "Guru Bonus"
-         TabPicture(4)   =   "frmClasses.frx":019C
+         TabPicture(4)   =   "frmClasses.frx":01E0
          Tab(4).ControlEnabled=   0   'False
-         Tab(4).Control(0)=   "lblHelp(4)"
-         Tab(4).Control(1)=   "lblLabel(15)"
-         Tab(4).Control(2)=   "lstGuru"
-         Tab(4).Control(3)=   "txtClsPts(4)"
-         Tab(4).Control(4)=   "cmdAdd(4)"
-         Tab(4).Control(5)=   "cmdRemove(4)"
+         Tab(4).Control(0)=   "cmdRemove(4)"
+         Tab(4).Control(1)=   "cmdAdd(4)"
+         Tab(4).Control(2)=   "txtClsPts(4)"
+         Tab(4).Control(3)=   "lstGuru"
+         Tab(4).Control(4)=   "lblLabel(15)"
+         Tab(4).Control(5)=   "lblHelp(4)"
          Tab(4).ControlCount=   6
          Begin VB.CommandButton cmdRemove 
             Caption         =   "< Remove"
@@ -944,9 +928,9 @@ Begin VB.Form frmClasses
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         ItemData        =   "frmClasses.frx":01B8
+         ItemData        =   "frmClasses.frx":01FC
          Left            =   -74760
-         List            =   "frmClasses.frx":01E3
+         List            =   "frmClasses.frx":0227
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
          TabIndex        =   27
@@ -964,9 +948,9 @@ Begin VB.Form frmClasses
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         ItemData        =   "frmClasses.frx":02D2
-         Left            =   1560
-         List            =   "frmClasses.frx":02E8
+         ItemData        =   "frmClasses.frx":0316
+         Left            =   -73440
+         List            =   "frmClasses.frx":032C
          Style           =   2  'Dropdown List
          TabIndex        =   10
          Top             =   3720
@@ -983,9 +967,9 @@ Begin VB.Form frmClasses
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         ItemData        =   "frmClasses.frx":0339
-         Left            =   1560
-         List            =   "frmClasses.frx":035E
+         ItemData        =   "frmClasses.frx":037D
+         Left            =   -73440
+         List            =   "frmClasses.frx":03A2
          Style           =   2  'Dropdown List
          TabIndex        =   9
          Top             =   3360
@@ -1002,9 +986,9 @@ Begin VB.Form frmClasses
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         ItemData        =   "frmClasses.frx":03E9
-         Left            =   1560
-         List            =   "frmClasses.frx":0435
+         ItemData        =   "frmClasses.frx":042D
+         Left            =   -73440
+         List            =   "frmClasses.frx":0479
          Style           =   2  'Dropdown List
          TabIndex        =   8
          Top             =   3000
@@ -1021,9 +1005,9 @@ Begin VB.Form frmClasses
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         ItemData        =   "frmClasses.frx":0629
-         Left            =   1560
-         List            =   "frmClasses.frx":0663
+         ItemData        =   "frmClasses.frx":066D
+         Left            =   -73440
+         List            =   "frmClasses.frx":06A7
          Style           =   2  'Dropdown List
          TabIndex        =   7
          Top             =   2640
@@ -1040,7 +1024,7 @@ Begin VB.Form frmClasses
             Strikethrough   =   0   'False
          EndProperty
          Height          =   285
-         Left            =   1560
+         Left            =   -73440
          MaxLength       =   16
          TabIndex        =   3
          Top             =   840
@@ -1048,7 +1032,7 @@ Begin VB.Form frmClasses
       End
       Begin ServerEditor.NumOnlyText txtID 
          Height          =   255
-         Left            =   1560
+         Left            =   -73440
          TabIndex        =   1
          Top             =   480
          Width           =   495
@@ -1072,7 +1056,7 @@ Begin VB.Form frmClasses
       End
       Begin ServerEditor.NumOnlyText txtEXP 
          Height          =   255
-         Left            =   2640
+         Left            =   -72360
          TabIndex        =   2
          Top             =   480
          Width           =   1695
@@ -1096,7 +1080,7 @@ Begin VB.Form frmClasses
       End
       Begin ServerEditor.NumOnlyText txtMagicLevel 
          Height          =   255
-         Left            =   1560
+         Left            =   -73440
          TabIndex        =   4
          Top             =   1200
          Width           =   495
@@ -1120,7 +1104,7 @@ Begin VB.Form frmClasses
       End
       Begin ServerEditor.NumOnlyText txtMinMana 
          Height          =   255
-         Left            =   1560
+         Left            =   -73440
          TabIndex        =   5
          Top             =   1920
          Width           =   735
@@ -1144,7 +1128,7 @@ Begin VB.Form frmClasses
       End
       Begin ServerEditor.NumOnlyText txtMaxMana 
          Height          =   255
-         Left            =   3600
+         Left            =   -71400
          TabIndex        =   6
          Top             =   1920
          Width           =   735
@@ -1198,7 +1182,7 @@ Begin VB.Form frmClasses
          EndProperty
          Height          =   195
          Index           =   26
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   46
          Top             =   1200
          Width           =   825
@@ -1217,7 +1201,7 @@ Begin VB.Form frmClasses
          EndProperty
          Height          =   195
          Index           =   12
-         Left            =   2280
+         Left            =   -72720
          TabIndex        =   45
          Top             =   480
          Width           =   270
@@ -1236,7 +1220,7 @@ Begin VB.Form frmClasses
          EndProperty
          Height          =   195
          Index           =   10
-         Left            =   2400
+         Left            =   -72600
          TabIndex        =   44
          Top             =   1920
          Width           =   735
@@ -1255,7 +1239,7 @@ Begin VB.Form frmClasses
          EndProperty
          Height          =   195
          Index           =   8
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   43
          Top             =   1920
          Width           =   675
@@ -1274,7 +1258,7 @@ Begin VB.Form frmClasses
          EndProperty
          Height          =   195
          Index           =   7
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   42
          Top             =   3720
          Width           =   825
@@ -1293,7 +1277,7 @@ Begin VB.Form frmClasses
          EndProperty
          Height          =   195
          Index           =   6
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   41
          Top             =   3360
          Width           =   810
@@ -1312,7 +1296,7 @@ Begin VB.Form frmClasses
          EndProperty
          Height          =   195
          Index           =   5
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   40
          Top             =   3000
          Width           =   840
@@ -1331,7 +1315,7 @@ Begin VB.Form frmClasses
          EndProperty
          Height          =   195
          Index           =   4
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   39
          Top             =   2640
          Width           =   1005
@@ -1350,7 +1334,7 @@ Begin VB.Form frmClasses
          EndProperty
          Height          =   195
          Index           =   1
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   38
          Top             =   840
          Width           =   405
@@ -1369,7 +1353,7 @@ Begin VB.Form frmClasses
          EndProperty
          Height          =   195
          Index           =   0
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   37
          Top             =   480
          Width           =   165
@@ -1719,6 +1703,7 @@ lstBegin.ColumnHeaders(1).Width = 10000
 lstInter.ColumnHeaders(1).Width = 10000
 lstMaster.ColumnHeaders(1).Width = 10000
 lstGuru.ColumnHeaders(1).Width = 10000
+modMain.PopulateCBOFlag cboCFlags
 End Sub
 
 Private Sub lstBase_Click()
@@ -1821,8 +1806,6 @@ With dbClass(lcID)
     For i = 1 To lstClassFlags.ListItems.Count
         s = s & modMain.MakeDBFlag(lstClassFlags.ListItems(i).Text) & ";"
     Next
-    If s = "" Then s = "0"
-    .sFlags = s
     s = ""
     .sName = txtName.Text
     .iUseMagical = CLng(txtMagicLevel.Text)
@@ -1900,14 +1883,14 @@ For i = LBound(dbClass) To UBound(dbClass)
             Next
             Erase Arr
             
-            lstClassFlags.ListItems.Clear
-            Arr = Split(.sFlags, ";")
-            For j = LBound(Arr) To UBound(Arr)
-                If Arr(j) <> "" And Arr(j) <> "0" Then
-                    lstClassFlags.ListItems.Add Text:=modMain.TranslateFlag(Arr(j))
-                End If
-            Next
-            Erase Arr
+            'lstClassFlags.ListItems.Clear
+            'Arr = Split(.sFlags, ";")
+            'For j = LBound(Arr) To UBound(Arr)
+            '    If Arr(j) <> "" And Arr(j) <> "0" Then
+            '        lstClassFlags.ListItems.Add Text:=modMain.TranslateFlag(Arr(j))
+            '    End If
+           ' Next
+           ' Erase Arr
             
             txtClsPts(1).Text = .dBeginnerMax
             txtClsPts(2).Text = .dIntermediateMax

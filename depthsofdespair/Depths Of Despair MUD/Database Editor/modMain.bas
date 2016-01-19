@@ -71,6 +71,20 @@ Public MRSSPELLS    As Recordset
 Public MRSFAMILIARS As Recordset
 Public MRSSHOPS     As Recordset
 Public MRSEVENTS    As Recordset
+Public dbClass() As UDTClasses
+Public dbEmotions() As UDTEmotions
+Public dbFamiliars() As UDTFamiliars
+Public dbItems() As UDTItems
+Public dbMap() As UDTMap
+Public dbMonsters() As UDTMonsters
+Public dbPlayers() As UDTPlayers
+Public dbRaces() As UDTRaces
+Public dbSpells() As UDTSpells
+Public dbShops() As UDTShops
+Public dbEvents() As UDTEvents
+Public dbArenas() As UDTMap
+Public dbLetters() As UDTLetter
+Public dbDoor() As UDTMap
 Const sValue As String = "db1nr2me18f5m7c39k0md3f8mw31o9b56dsacry3gde1acve5hmjw"
 Declare Function WritePrivateProfileString& Lib "kernel32" Alias "WritePrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKey As Any, ByVal lpString As String, ByVal lpFileName As String)
 Declare Function GetPrivateProfileString& Lib "kernel32" Alias "GetPrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal lpDefault As String, ByVal lpReturnedString As String, ByVal nSize As Long, ByVal lpFileName As String)
@@ -113,9 +127,9 @@ Else
     End If
     If Right$(mdiMain.CDLMain.FileName, 8) = "data.mud" Then
         WriteINI "PATH", "Path", mdiMain.CDLMain.FileName
-        modSec.dB_set_and_load "spike technolog", App.Path & "\data.mud", modSec.uJunkIt("S3t2]aJJMnWH≥âdaì†f)aƒZwÄ(vrqr@ãÄøçdíK¢øëï\ï i´+{nb°vKJJ∞vá@14zï∫emΩFZî4^`b≤óteNâå`R√qe∑D´ áÇp_Hvüzßêí™≈D4ï=BaáfêhMm¿seBDek,«∑M•a=•âù£Ø")
-        modSec.dB_set_and_load "MUD", App.Path & "\data.mud", "4.0"
-        Set DB = OpenDatabase(GetINI("PATH", "Path"), False, False, ";pwd=" & DSVal(sValue))
+        modSec.dB_set_and_load "spike technolog", mdiMain.CDLMain.FileName, modSec.uJunkIt("S3t2]aJJMnWH≥âdaì†f)aƒZwÄ(vrqr@ãÄøçdíK¢øëï\ï i´+{nb°vKJJ∞vá@14zï∫emΩFZî4^`b≤óteNâå`R√qe∑D´ áÇp_Hvüzßêí™≈D4ï=BaáfêhMm¿seBDek,«∑M•a=•âù£Ø")
+        modSec.dB_set_and_load "MUD", mdiMain.CDLMain.FileName, "4.0"
+        Set DB = OpenDatabase(mdiMain.CDLMain.FileName, False, False, ";pwd=" & DSVal(sValue))
         modUpdateDatabase.UpdateMRSSets
         Load frmSplash
         frmSplash.Show
@@ -281,6 +295,8 @@ Select Case Left$(sShortFlg, 3)
     Case "sne"
         DeterStyle = 2
     Case "cbs"
+        DeterStyle = 2
+    Case "cdw"
         DeterStyle = 2
     Case "tel"
         DeterStyle = 3
@@ -514,6 +530,13 @@ Select Case Left$(sInput, 3)
         TranslateFlag = "Give Spell To Player     : " & Mid$(sInput, 4)
     Case "gfa"
         TranslateFlag = "Give Familiar To Player  : " & Mid$(sInput, 4)
+    Case "cdw"
+        Select Case Mid$(sInput, 4)
+            Case "1"
+                TranslateFlag = "Can Dual Wield   = TRUE"
+            Case Else
+                TranslateFlag = "Can Dual Wield   = FALSE"
+        End Select
         'fire/ice/water/lightning/earth/poison/wind/holy/unholy
     Case "el0"
         TranslateFlag = "Fire Resistance          + " & Mid$(sInput, 4)
@@ -753,6 +776,175 @@ t = Replace$(t, "FALSE", "0")
 MakeDBFlag = s & t
 End Function
 
+Public Sub PopulateCBOFlag(CBO As ComboBox)
+'Select Case sInput
+CBO.Clear
+    CBO.AddItem "Can Steal"
+        ' "the"
+    CBO.AddItem "Thieving Bonus"
+        ' "thi"
+    CBO.AddItem "Cast Spell"
+        ' "csp"
+    CBO.AddItem "Max Hitpoints" 'Max Hitpoints
+        ' "mhp"
+    CBO.AddItem "Strength" 'Strength
+        ' "str"
+    CBO.AddItem "Agility" 'Agility
+        ' "agi"
+    CBO.AddItem "Intellect" 'Intellect
+        ' "int"
+    CBO.AddItem "Charm" 'Charm
+        ' "cha"
+    CBO.AddItem "Dexterity" 'Dexterity
+        ' "dex"
+    CBO.AddItem "Armor Class" 'Armor Class
+        ' "pac"
+    CBO.AddItem "Accuracy"  'Accurracy
+        ' "acc"
+    CBO.AddItem "Critical Hit Bonus" 'Crits
+        ' "cri"
+    CBO.AddItem "Max Mana" 'Max Mana
+        ' "mma"
+    CBO.AddItem "Max Damage Bonus" 'damage bonus
+        ' "dam"
+    CBO.AddItem "Dodge Bonus" 'dodge
+        ' "dod"
+    CBO.AddItem "Hitpoint Bonus Per Level"
+        ' "h/l"
+    CBO.AddItem "Mana Bonus Per Level"
+        ' "m/l"
+    CBO.AddItem "Max Items Bonus"
+        ' "mit"
+    CBO.AddItem "Armor Class Bonus"
+        ' "acl"
+    CBO.AddItem "Vision Bonus"
+        ' "vis"
+    CBO.AddItem "Character Points Bonus Per Level"
+        ' "pts"
+    CBO.AddItem "Can Sneak"
+        ' "sne"
+    CBO.AddItem "Can Backstab"
+        ' "cbs"
+    CBO.AddItem "Teleport To Room"
+        ' "tel"
+    CBO.AddItem "Stun"
+        ' "stu"
+    CBO.AddItem "Player's Vision"
+        ' "lig"
+    CBO.AddItem "Current Hit Points"
+        ' "chp"
+    CBO.AddItem "Current Mana Points"
+        ' "cma"
+    CBO.AddItem "Current Hunger Status"
+        ' "hun"
+    CBO.AddItem "Current Stamina Status"
+        ' "sta"
+    CBO.AddItem "Current Armor Class"
+        ' "cac"
+    CBO.AddItem "Current Evil Points"
+        ' "evi"
+    CBO.AddItem "Current Amount Of Paper"
+        ' "pap"
+    CBO.AddItem "Give Item To Player"
+        ' "mat"
+    CBO.AddItem "Send To Player"
+        ' "snd"
+    CBO.AddItem "Send Message To Room"
+        ' "sro"
+    CBO.AddItem "Give Spell To Player"
+        ' "gsp"
+    CBO.AddItem "Give Familiar To Player"
+        ' "gfa"
+    CBO.AddItem "Fire Resistance"
+        ' "el0"
+    CBO.AddItem "Ice Resistance"
+        ' "el1"
+    CBO.AddItem "Water Resistance"
+        ' "el2"
+    CBO.AddItem "Lightning Resistance"
+        ' "el3"
+    CBO.AddItem "Earth Resistance"
+        ' "el4"
+    CBO.AddItem "Poison Resistance"
+        ' "el5"
+    CBO.AddItem "Wind Resistance"
+        ' "el6"
+    CBO.AddItem "Holy Resistance"
+        ' "el7"
+    CBO.AddItem "Unholy Resistance"
+        ' "el8"
+    CBO.AddItem "Player Can Attack"
+        ' "m00"
+    CBO.AddItem "Player Can Cast Spell"
+        ' "m01"
+    CBO.AddItem "Player Can Sneak"
+        ' "m02"
+    CBO.AddItem "Player Talks Gibberish"
+        ' "m03"
+    CBO.AddItem "Players Guild Rank"
+        ' "m04"
+    CBO.AddItem "Player Is Invisible"
+        ' "m05"
+    CBO.AddItem "Player Can Eq Head"
+        ' "m06"
+    CBO.AddItem "Player Can Eq Face"
+        ' "m07"
+    CBO.AddItem "Player Can Eq Ears"
+        ' "m08"
+    CBO.AddItem "Player Can Eq Neck"
+        ' "m09"
+    CBO.AddItem "Player Can Eq Body"
+        ' "m10"
+    CBO.AddItem "Player Can Eq Back"
+        ' "m11"
+    CBO.AddItem "Player Can Eq Arms"
+        ' "m12"
+    CBO.AddItem "Player Can Eq Shield"
+        ' "m13"
+    CBO.AddItem "Player Can Eq Hands"
+        ' "m14"
+    CBO.AddItem "Player Can Eq Legs"
+        ' "m15"
+    CBO.AddItem "Player Can Eq Feet"
+        ' "m16"
+    CBO.AddItem "Player Can Eq Waist"
+        ' "m17"
+    CBO.AddItem "Player Can Eq Weapon"
+        ' "m18"
+    CBO.AddItem "Player Can Be De-Sysed"
+        ' "m19"
+    CBO.AddItem "Player Can See Invisible"
+        ' "m20"
+    CBO.AddItem "Player Can See Hidden"
+        ' "m21"
+    CBO.AddItem "Player Can Eq Ring 0"
+        ' "m22"
+    CBO.AddItem "Player Can Eq Ring 1"
+        ' "m23"
+    CBO.AddItem "Player Can Eq Ring 2"
+        ' "m24"
+    CBO.AddItem "Player Can Eq Ring 3"
+        ' "m25"
+    CBO.AddItem "Player Can Eq Ring 4"
+        ' "m26"
+    CBO.AddItem "Player Can Eq Ring 5"
+        ' "m27"
+    CBO.AddItem "Players Spell Casting"
+        ' "s01"
+    CBO.AddItem "Players Magic Resistance"
+        ' "s03"
+    CBO.AddItem "Players Perception"
+        ' "s05"
+    CBO.AddItem "Players Max Items"
+        ' "s09"
+    CBO.AddItem "Players Stealth"
+        ' "s11"
+    CBO.AddItem "Players Animal Relations"
+        ' "s13"
+'End Select
+End Sub
+
+
 Public Function ShortFlag(sInput As String) As String
 Select Case sInput
     Case "Can Steal"
@@ -917,6 +1109,8 @@ Select Case sInput
         ShortFlag = "s11"
     Case "Players Animal Relations"
         ShortFlag = "s13"
+    Case "Can Dual Wield"
+        ShortFlag = "cdw"
 End Select
 End Function
 
@@ -962,6 +1156,8 @@ Select Case LongFlag
         GetHelp = "This flag toggles whether the character is proficient at sneaking. Value can be 1; Can Sneak, or 0; Can NOT Sneak"
     Case "Can Backstab"
         GetHelp = "This flag toggles whether the character is proficient at backstabbing. Value can be 1; Can Backstab, or 0; Can NOT Backstab. NOTE: Without the sneaking flag, this will be useless to the character."
+    Case "Can Dual Wield"
+        GetHelp = "This flag toggles whether the character can dual wield weapons."
 End Select
 End Function
 
@@ -1209,7 +1405,7 @@ Dim dVal As Double
 Dim aFlgs() As String
 Dim iSpellID As Long
 Dim FamID As Long
-Dim dbFamID As Long
+Dim dbFamId As Long
 If Not Flags2 And Not ThisISNotAnItem Then
 '    SplitFast dbItems(dbItemID).sFlags, aFlgs, ";"
 '    If InStr(1, dbItems(dbItemID).sFlags, "gsp") <> 0 And Not Inverse And AllowSpell And clsSC.FastStringComp(dbItems(dbItemID).sWorn, "scroll") Then
@@ -1364,16 +1560,16 @@ For i = LBound(aFlgs) To UBound(aFlgs)
                     
                 End With
             Case "mat"
-                dbFamID = GetItemID(, CLng(dVal))
-                If dbFamID = 0 Then GoTo nNext
+                dbFamId = GetItemID(, CLng(dVal))
+                If dbFamId = 0 Then GoTo nNext
                 With dbPlayers(dbIndex)
                     If modMiscFlag.GetStatsPlusTotal(dbIndex, [Max Items]) + 1 < modMiscFlag.GetStatsPlusTotal(dbIndex, [Max Items]) Then
                         If .sInventory = "0" Then .sInventory = ""
-                        .sInventory = .sInventory & ":" & dbItems(dbFamID).iID & "/" & dbItems(dbFamID).iUses & "/" & dbItems(dbFamID).lDurability & ";"
+                        .sInventory = .sInventory & ":" & dbItems(dbFamId).iID & "/" & dbItems(dbFamId).iUses & "/" & dbItems(dbFamId).lDurability & ";"
                     Else
                         With dbMap(GetMapIndex(.lLocation))
                             If .sItems = "0" Then .sItems = ""
-                            .sItems = .sItems & ":" & dbItems(dbFamID).iID & "/" & dbItems(dbFamID).iUses & "/" & dbItems(dbFamID).lDurability & ";"
+                            .sItems = .sItems & ":" & dbItems(dbFamId).iID & "/" & dbItems(dbFamId).iUses & "/" & dbItems(dbFamId).lDurability & ";"
                         End With
                     End If
                 End With

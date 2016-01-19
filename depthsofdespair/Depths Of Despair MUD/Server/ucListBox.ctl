@@ -78,6 +78,7 @@ Option Explicit
 Private Declare Function DrawEdge Lib "user32" (ByVal hdc As Long, qrc As RECT, ByVal edge As Long, ByVal grfFlags As Long) As Long
 'Fill rectangles
 Private Declare Function FillRect Lib "user32" (ByVal hdc As Long, lpRect As RECT, ByVal hBrush As Long) As Long
+Private Declare Function SetRectEmpty Lib "user32" (lpRect As RECT) As Long
 'Create solid brushes
 Private Declare Function CreateSolidBrush Lib "gdi32" (ByVal crColor As Long) As Long
 Private Declare Function CreateHatchBrush Lib "gdi32" (ByVal nIndex As Long, ByVal crColor As Long) As Long
@@ -309,7 +310,7 @@ Private SystemTextColor As Long
 Private SystemHighlightTextColor As Long
 Private CurStyle As View  'styles
 Private CurColor As OLE_COLOR 'BG colors
-Private lB As Long 'Color
+Private LB As Long 'Color
 Private aList() As ListStyle 'List items
 Private lTop As Long 'Top item index
 Private lSelected As Long 'Which item is selected
@@ -467,6 +468,7 @@ For i = lTop To UBound(aList) 'Loop from where the list begins
                                 .iCheck = 0 'UnCheck it
                         End Select
                         GetItemClick = i
+                        SetRectEmpty b
                         Exit For
                     End If
                     'If they didn't click in the Checkbox, adjust the RECT
@@ -495,6 +497,7 @@ For i = lTop To UBound(aList) 'Loop from where the list begins
                                 RaiseEvent ItemChecked(i)
                                 GetItemClick = i
                         End Select
+                        SetRectEmpty b
                         Exit For
                     End If
                 End If
@@ -515,6 +518,7 @@ For i = lTop To UBound(aList) 'Loop from where the list begins
         If (X > 1 And X < b.Right) And (Y > b.Top And Y < b.Bottom) And .bEnabled Then
             GetItemClick = i 'If they clicked the item, set the
             'value to the function, and get out of the loop
+            SetRectEmpty b
             Exit For
         End If
         lCounter = lCounter + 1 'Increase the counter
@@ -788,6 +792,7 @@ For j = LBound(tArr) To UBound(tArr)
         OffsetRect rRECT, ScaleX(picMain.TextWidth(tArr(j)), 1, 3), 0
     End If
 Next
+Erase tArr
 picMain.FontItalic = False
 picMain.FontBold = False
 picMain.FontUnderline = False
@@ -818,7 +823,7 @@ If bBNeedSB Then HS.Width = HS.Width - ScaleX(vW + 1, 3, 1)
 HS.Height = ScaleY(HH, 3, 1)
 HS.Top = picMain.Height - HS.Height - ScaleY(3, 3, 1)
 HS.Left = ScaleX(3, 3, 1)
-HS.Max = ScaleX(MaxLen, 1, 3) - ScaleX(picMain.Width, 1, 3) + (vW + 8)
+HS.max = ScaleX(MaxLen, 1, 3) - ScaleX(picMain.Width, 1, 3) + (vW + 8)
 End Sub
 
 Private Sub DrawInit()
@@ -831,10 +836,10 @@ GetClientRect picMain.hwnd, R 'Get the user controls RECT
 picMain.Cls 'Clear the screen
 If Color And (BackPic Is Nothing Or fFill = Lined) Then 'If they have a custom color
     'create a brush
-    lB = CreateSolidBrush(CurColor)
+    LB = CreateSolidBrush(CurColor)
     'And fill the user control with it
-    FillRect picMain.hdc, R, lB
-    DeleteObject lB 'Clean up resources
+    FillRect picMain.hdc, R, LB
+    DeleteObject LB 'Clean up resources
 ElseIf Not BackPic Is Nothing Then
     LBM = CreateCompatibleDC(GetDC(0))
     SelectObject LBM, BackPic
@@ -859,6 +864,7 @@ Select Case CurStyle
         FrameRect picMain.hdc, R, b
         DeleteObject b
 End Select
+SetRectEmpty R
 bPaint = True
 picMain.Refresh 'Refresht he user control
 End Sub
@@ -1107,6 +1113,8 @@ For i = lTop To UBound(aList) 'Loop from the first visible one
         End If
     End With
 Next
+SetRectEmpty b
+SetRectEmpty pb
    On Error GoTo 0
    Exit Sub
 
@@ -1221,6 +1229,7 @@ pb.Right = pb.Left + ((pb.Right - pb.Left) * dVal)
  'pb.Right = pb.Right + pb.Left
 FillRect lTHDC, pb, lC
 DeleteObject lC
+SetRectEmpty pb
 End Sub
 
 Private Sub DrawSB()
@@ -1230,7 +1239,7 @@ VS.Top = ScaleY(3, 3, 1)
 VS.Height = UserControl.Height - ScaleY(6, 3, 1)
 VS.Width = ScaleX(GetVSBWidth, 3, 1)
 VS.Left = picMain.Width - VS.Width - ScaleX(2, 3, 1)
-VS.Max = UBound(aList) - DeterVisible(True)
+VS.max = UBound(aList) - DeterVisible(True)
 End Sub
 
 Private Sub HS_Change()
@@ -1289,6 +1298,7 @@ Select Case KeyCode
             i = lSelected
             Do
                 i = i + 1
+                DoEvents
             Loop Until aList(i).bEnabled = True Or i >= UBound(aList)
             If i <= UBound(aList) Then
                 If (lCtrlD = 0) Then aList(lSelected).bSelected = False
@@ -1317,6 +1327,7 @@ Select Case KeyCode
             i = lSelected
             Do
                 i = i - 1
+                DoEvents
             Loop Until aList(i).bEnabled = True Or i < 1
             If i > 0 Then
                 If lCtrlD = 0 Then aList(lSelected).bSelected = False
@@ -1359,6 +1370,7 @@ End Sub
 
 Private Sub picMain_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
 'To find out where/what they clicked
+On Error GoTo eh1
 Dim l As Long
 Dim i As Long
 l = GetItemClick(X, Y)
@@ -1379,6 +1391,7 @@ If l <> 0 Then
         DoEvents
     Next
 End If
+eh1:
 DrawInit
 RaiseEvent ItemClicked(lSelected)
 RaiseEvent MouseDown(Button, Shift, X, Y)
@@ -1389,7 +1402,7 @@ RaiseEvent MouseMove(Button, Shift, X, Y)
 End Sub
 
 Private Sub picMain_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-DrawInit
+'DrawInit
 RaiseEvent MouseUp(Button, Shift, X, Y)
 End Sub
 
@@ -1399,20 +1412,20 @@ Dim i       As Long 'max check
 Dim j       As Long 'counter
 Dim l       As Long 'offset
 Dim u       As Long 'ubound()
-Dim lB      As Long 'lbound()
+Dim LB      As Long 'lbound()
 Dim b       As Long 'item switching
    On Error GoTo SortIt_Error
     u = UBound(aList)
     If u < 1 Then Exit Sub
-    lB = LBound(aList)
-    lB = lB + 1
-    l = (u - lB) \ 2
+    LB = LBound(aList)
+    LB = LB + 1
+    l = (u - LB) \ 2
     Do Until l < 1
         i = u - l
         Do
             b = 0
-            For j = lB To i
-                If UCase(ReplaceColors(aList(j).sCaption)) > UCase(aList(j + l).sCaption) Then
+            For j = LB To i
+                If UCase(ReplaceColors(aList(j).sCaption)) > UCase(ReplaceColors(aList(j + l).sCaption)) Then
                     tmpList = aList(j)
                     aList(j) = aList(j + l)
                     aList(j + l) = tmpList
@@ -1480,11 +1493,14 @@ DrawInit 'refresh
 End Sub
 
 Private Sub UserControl_Terminate()
+Dim i As Long
 On Error GoTo UserControl_Terminate_Error
-
+For i = 1 To UBound(aList)
+    Set aList(i).pIcon = Nothing
+Next
 Erase aList 'Clear up memory
 Set BackPic = Nothing
-
+SetRectEmpty R
 On Error GoTo 0
 Exit Sub
 UserControl_Terminate_Error:
@@ -1514,12 +1530,21 @@ If bPaint Then DrawInit
 RaiseEvent VerticalScroll(VS.Value)
 End Sub
 
-Public Function Find(ByVal s As String) As Long
+Public Function Find(ByVal s As String, Optional bRemoveTags As Boolean = False) As Long
 Dim i As Long
+Dim a As String
+Dim b As String
 For i = LBound(aList) To UBound(aList)
     With aList(i)
         If .bEnabled = True Then
-            If LCase$(Left$(.sCaption, Len(s))) = LCase$(s) Then
+            If bRemoveTags Then
+                a = LCase$(ReplaceColors(Left$(.sCaption, Len(s))))
+                b = LCase$(ReplaceColors(s))
+            Else
+                a = LCase$(Left$(.sCaption, Len(s)))
+                b = LCase$(s)
+            End If
+            If a = b Then
                 Find = i
                 Exit Function
             End If
@@ -1862,11 +1887,11 @@ End Sub
 Public Sub MakeItemX(Index As Long, wch As coE, Optional OptGrp As Long, Optional lPrgBaMa As Long, Optional lPrgBaCol As OLE_COLOR)
 Select Case wch
     Case [Option Box]
-    aList(Index).bUseCheckBox = False
-    With aList(Index)
-        .bUseOptionBox = True
-        .lOptionGroup = OptGrp
-    End With
+        aList(Index).bUseCheckBox = False
+        With aList(Index)
+            .bUseOptionBox = True
+            .lOptionGroup = OptGrp
+        End With
     Case [Check Box]
         aList(Index).bUseCheckBox = True
         aList(Index).bUseOptionBox = False
@@ -1908,6 +1933,7 @@ On Error GoTo RemoveItem_Error
 'Removes an item
 Dim i As Long
 If Index <> 0 Then
+    Set aList(Index).pIcon = Nothing
     For i = Index To UBound(aList) - 1
         aList(i) = aList(i + 1)
     Next
@@ -2028,7 +2054,7 @@ For i = 1 To UBound(aList)
     DoEvents
 Next
 If Index > lTop Then
-    If Index - 1 > VS.Max Then VS.Value = VS.Max Else If MoveSelectionToTop Then VS.Value = Index - 1
+    If Index - 1 > VS.max Then VS.Value = VS.max Else If MoveSelectionToTop Then VS.Value = Index - 1
 Else
     VS.Value = Index - 1
 End If

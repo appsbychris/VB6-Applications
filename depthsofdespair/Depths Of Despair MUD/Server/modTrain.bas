@@ -259,7 +259,7 @@ Dim i As Double
 Dim s As String
 
 dbIndex = GetPlayerIndexNumber(Index)
-If X(Index) <> "" Then
+If X(Index) <> "" And X(Index) <> vbLf Then
     If IsNumeric(X(Index)) Then
         i = CDbl(X(Index))
     Else
@@ -377,7 +377,7 @@ With dbPlayers(dbIndex)
 '            If .iSC >= 100 Then .iSC = 99
             modMiscFlag.RedoStatsPlus dbIndex
             modMiscFlag.SetStatsPlus dbIndex, [Max Items Bonus], modMiscFlag.GetStatsPlus(dbIndex, [Max Items Bonus]) + dbClass(GetClassID(.sClass)).lMaxItemsBonus
-            WrapAndSend Index, modgetdata.GetRoomDescription(dbIndex, CLng(.lLocation))
+            WrapAndSend Index, modGetData.GetRoomDescription(dbIndex, CLng(.lLocation))
             Exit Sub
     End Select
     .iTrainSlot = .iTrainSlot + 1

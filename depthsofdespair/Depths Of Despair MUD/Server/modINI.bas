@@ -17,8 +17,8 @@ Rem Function to get the user defined settings
 Dim strSpace As String, theLength As Long
 strSpace = Space(255)
 theLength = GetPrivateProfileString("USER", sKey, "Error", strSpace, 255, App.Path & "\userdefined.dat")
-strSpace = ReplaceFast(strSpace, Chr$(0), "")
-strSpace = TrimIt(strSpace)
+strSpace = Replace(strSpace, Chr$(0), "")
+strSpace = Trim(strSpace)
 GetINI = strSpace
 End Function
 

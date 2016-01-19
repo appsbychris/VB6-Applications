@@ -228,6 +228,7 @@ If LCaseFast(X(Index)) = "sys room info" Then
         s = s & "Death Room      " & .lDeathRoom & vbCrLf
         s = s & "Room Type       " & modGetData.GetMapRoomType(dbMapId) & vbCrLf
         s = s & "Train Class     " & .iTrainClass & vbCrLf
+        s = s & "Script          " & .sScript & vbCrLf
         WrapAndSend Index, s & WHITE
     End With
     X(Index) = ""

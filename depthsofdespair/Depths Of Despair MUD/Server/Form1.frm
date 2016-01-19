@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
 Begin VB.Form frmMain 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -1415,6 +1415,7 @@ If pPoint(lngIndex) = 15 Then
             modTrain.MOVECURSOR lngIndex
         Case Else
             If (InStr(1, Msg, vbCrLf) Or InStr(1, Msg, vbLf) Or InStr(1, Msg, vbCr)) Then
+                X(lngIndex) = Msg
                 modTrain.ValidateAndAdjust lngIndex
             Else
                 If Asc(Msg) = vbKeyBack Then

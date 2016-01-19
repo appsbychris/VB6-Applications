@@ -1,4 +1,13 @@
 Attribute VB_Name = "modDataTypes"
+'
+'----------------------------------------------------------
+' Project   : DoDMudServer
+' Module    : modDataTypes
+' Author    : Chris Van Hooser
+' Copyright : 2004, Spike Technologies, Chris Van Hooser
+' Email     : spike.spikey@comcast.net
+'----------------------------------------------------------
+'
 Public Type UDTPlayers
     lPlayerID As Long
     sPlayerName As String
@@ -7,10 +16,10 @@ Public Type UDTPlayers
     sInventory As String
     sHead As String
     sBody As String
-    sTrainStats As String
     sArms As String
     sHands As String
     sLegs As String
+    sTrainStats As String
     sFeet As String
     sWaist As String
     sSpells As String
@@ -44,14 +53,24 @@ Public Type UDTPlayers
     iCrits As Long
     iDodge As Long
     iMaxDamage As Long
-    iFamID As Long
+    
+    lFamID As Long
+    sFamCustom As String
     sFamName As String
-    lFamCurrentHP As Long
-    lFamMaxHP As Long
-    dFamEXP As Double
+    lFamLevel As Long
+    dFamTEXP As Double
+    dFamCEXP As Double
+    dFamEXPN As Double
+    lFamCHP As Long
+    lFamMHP As Long
+    lFamMin As Long
+    lFamMax As Long
+    lFamAcc As Long
+    
     dMonsterID As Double
     iIndex As Long
     lLocation As Long
+    lDBLocation As Long
     lBackUpLoc As Long
     iResting As Long
     iInvitedBy As Long
@@ -114,6 +133,11 @@ Public Type UDTPlayers
     sSeenAs As String
     sRings(5) As String
     lCanClear As Long
+    sFamFlags As String
+    lRoomSpellFlag As Long
+    lQueryTimer As Long
+    iMeditating As Long
+    iDualWield As Long
 End Type
 
 Public Type UDTShops
@@ -156,7 +180,6 @@ Public Type UDTClasses
     sMBonus As String
     sGBonus As String
     sBaseBonus As String
-    sFlags As String
     'Flags
     lCanBS As Long
     lCanSneak As Long
@@ -171,6 +194,7 @@ Public Type UDTClasses
     lVisionBonus As Long
     lMaxItemsBonus As Long
     lCanSteal As Long
+    lCanDualWield As Long
 End Type
 
 Public Type UDTEmotions
@@ -312,6 +336,9 @@ Public Type UDTMap
     iTrainClass As Long
     sMapFlags As String
     sOutDoorFood As String
+    ldbDoorsMapID As Long
+    sAMonIds As String
+    ldbMapID As Long
 End Type
 
 Public Type UDTMonsters
@@ -328,6 +355,7 @@ Public Type UDTMonsters
     iAttackable As Long
     iHostile As Long
     sDropItem As String
+    iDropPercent As Long
     lRegenTimeLeft As Long
     iType As Long
     lRegenTime As Long
@@ -388,7 +416,10 @@ Public Type MonsterSpells
     lEnergy As Long
     lMaxCast As Long
     lCurrentCast As Long
+    lCastPerRound As Long
 End Type
+
+
 
 Public Type Monster
     mHP                 As Long
@@ -408,6 +439,7 @@ Public Type Monster
     mHostile            As Boolean
     mDeathText          As String
     mRoams              As Long
+    mDesc               As String
     mDontAttackIfItem   As Long
     mAtNightMonster     As Long
     mAtDayMonster       As Long
@@ -419,6 +451,13 @@ Public Type Monster
     mEnergy             As Long
     mPEnergy            As Long
     mTitle              As String
+    mWeapon             As UDTItems
+    mList(9)            As Long
+    mEvil               As Long
+    mPEQ                As String
+    mPMoney             As Long
+    mdbMapID            As Long
+    mdbMonID            As Long
 End Type
 Public Type Weapon
     wMin        As Long
@@ -427,9 +466,20 @@ Public Type Weapon
     wMessage    As String
     wMessage2   As String
     wMessageV   As String
+    wWeaponName As String
     wSpellName  As String
     wCast       As Long
     wMana       As Long
+    wElement    As Long
+    wSB         As Long
+    wMINDAM     As Long
+    wMAXDAM     As Long
+    wCastSp     As String
+    wCastSpPer  As String
+    wBullets    As Long
+    wMag        As Long
+    wBMana      As Long
+    lCol        As Long
 End Type
 
 Public Type UDTLetter
@@ -438,15 +488,10 @@ Public Type UDTLetter
     sTitle As String
 End Type
 
+Public Type UDTMyBaseTimer
+    lInterval As Long
+    sScript As String
+    lTimePassed As Long
+    lRoomID As Long
+End Type
 
-Public dbClass() As UDTClasses
-Public dbEmotions() As UDTEmotions
-Public dbFamiliars() As UDTFamiliars
-Public dbItems() As UDTItems
-Public dbMap() As UDTMap
-Public dbMonsters() As UDTMonsters
-Public dbPlayers() As UDTPlayers
-Public dbRaces() As UDTRaces
-Public dbSpells() As UDTSpells
-Public dbShops() As UDTShops
-Public dbEvents() As UDTEvents

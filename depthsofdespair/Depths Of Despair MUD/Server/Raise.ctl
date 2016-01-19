@@ -104,10 +104,16 @@ Public Enum Styles
     CheckedMonoButton = 5
     CheckedSunken = 6
 End Enum
+Public Event Click()
 Dim CurStyle As Styles
 Dim CurColor As OLE_COLOR
 Private Rgn As Long
 Private LB As Long
+
+Private Sub UserControl_Click()
+RaiseEvent Click
+End Sub
+
 Private Sub UserControl_Initialize()
 GetClientRect UserControl.hwnd, R
 UserControl.Cls

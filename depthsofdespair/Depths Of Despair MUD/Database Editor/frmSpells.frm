@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "tabctl32.ocx"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
 Begin VB.Form frmSpells 
    BorderStyle     =   1  'Fixed Single
@@ -111,29 +111,34 @@ Begin VB.Form frmSpells
       TabCaption(1)   =   "Messages"
       TabPicture(1)   =   "frmSpells.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "lblLabel(14)"
-      Tab(1).Control(1)=   "lblLabel(15)"
-      Tab(1).Control(2)=   "lblLabel(16)"
-      Tab(1).Control(3)=   "lblSpells"
-      Tab(1).Control(4)=   "lblEX"
-      Tab(1).Control(5)=   "Line2"
-      Tab(1).Control(6)=   "lblLabel(17)"
-      Tab(1).Control(7)=   "lblLabel(18)"
-      Tab(1).Control(8)=   "lblLabel(19)"
-      Tab(1).Control(9)=   "txtMessage"
-      Tab(1).Control(10)=   "txtMessageV"
-      Tab(1).Control(11)=   "txtMessage2"
-      Tab(1).Control(12)=   "txtStatMessage"
-      Tab(1).Control(13)=   "txtWearOff"
+      Tab(1).Control(0)=   "txtWearOff"
+      Tab(1).Control(1)=   "txtStatMessage"
+      Tab(1).Control(2)=   "txtMessage2"
+      Tab(1).Control(3)=   "txtMessageV"
+      Tab(1).Control(4)=   "txtMessage"
+      Tab(1).Control(5)=   "lblLabel(19)"
+      Tab(1).Control(6)=   "lblLabel(18)"
+      Tab(1).Control(7)=   "lblLabel(17)"
+      Tab(1).Control(8)=   "Line2"
+      Tab(1).Control(9)=   "lblEX"
+      Tab(1).Control(10)=   "lblSpells"
+      Tab(1).Control(11)=   "lblLabel(16)"
+      Tab(1).Control(12)=   "lblLabel(15)"
+      Tab(1).Control(13)=   "lblLabel(14)"
       Tab(1).ControlCount=   14
       TabCaption(2)   =   "Flags"
       TabPicture(2)   =   "frmSpells.frx":0038
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "picTab(1)"
-      Tab(2).Control(1)=   "picTab(0)"
+      Tab(2).Control(0)=   "flgOpts"
+      Tab(2).Control(0).Enabled=   0   'False
+      Tab(2).Control(1)=   "cboFlags"
+      Tab(2).Control(1).Enabled=   0   'False
       Tab(2).Control(2)=   "tbFlags"
-      Tab(2).Control(3)=   "cboFlags"
-      Tab(2).Control(4)=   "flgOpts"
+      Tab(2).Control(2).Enabled=   0   'False
+      Tab(2).Control(3)=   "picTab(0)"
+      Tab(2).Control(3).Enabled=   0   'False
+      Tab(2).Control(4)=   "picTab(1)"
+      Tab(2).Control(4).Enabled=   0   'False
       Tab(2).ControlCount=   5
       Begin VB.ComboBox cboUse 
          Height          =   315
@@ -1144,6 +1149,7 @@ Dim m As Long
 Dim Arr() As String
 MousePointer = vbHourglass
 bIs = True
+modMain.PopulateCBOFlag cboFlags
 If Arg = -1 Then Arg = LBound(dbSpells)
 If FillList Then lstSpells.Paint = False: lstSpells.Clear
 For i = LBound(dbSpells) To UBound(dbSpells)

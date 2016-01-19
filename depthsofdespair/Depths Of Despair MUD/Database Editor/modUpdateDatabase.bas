@@ -804,7 +804,8 @@ Select Case iStep
                         !IBonus = dbClass(i).sIBonus
                         !MBonus = dbClass(i).sMBonus
                         !BaseBonus = dbClass(i).sBaseBonus
-                        !flags = dbClass(i).sFlags
+                        'If dbClass(i).sFlags = "" Then dbClass(i).sFlags = "0"
+                        '!flags = dbClass(i).sFlags
                         .Update
                         Exit Do
                     ElseIf Not .EOF Then
@@ -844,7 +845,7 @@ Select Case iStep
                     !IBonus = dbClass(i).sIBonus
                     !MBonus = dbClass(i).sMBonus
                     !BaseBonus = dbClass(i).sBaseBonus
-                    !flags = dbClass(i).sFlags
+                    '!flags = dbClass(i).sFlags
                     .Update
                 End If
             End With
@@ -908,7 +909,7 @@ Select Case iStep
                         b = True
                         .Edit
                         !Description = dbFamiliars(i).sDescription
-                        !FamName = dbFamiliars(i).sFamName
+                        !famName = dbFamiliars(i).sFamName
                         !StartHPMin = dbFamiliars(i).lStartHPMin
                         !StartHPMax = dbFamiliars(i).lStartHPMax
                         !EXPPerLevel = dbFamiliars(i).dEXPPerLevel
@@ -945,7 +946,7 @@ Select Case iStep
                     .AddNew
                     !ID = j
                     !Description = dbFamiliars(i).sDescription
-                    !FamName = dbFamiliars(i).sFamName
+                    !famName = dbFamiliars(i).sFamName
                     !StartHPMin = dbFamiliars(i).lStartHPMin
                     !StartHPMax = dbFamiliars(i).lStartHPMax
                     !EXPPerLevel = dbFamiliars(i).dEXPPerLevel
@@ -1090,7 +1091,7 @@ Load frmSplash
 frmSplash.Top = Screen.Height - frmSplash.Height
 frmSplash.Left = Screen.Width - frmSplash.Width
 UpdateMRSSets
-LoadDatabaseIntoMemory False
+LoadDatabaseIntoMemory 'False
 Unload frmSplash
 On Error GoTo 0
 Exit Sub
@@ -1100,7 +1101,7 @@ SaveMemoryToDatabase_Error:
 'UpdateList "          Occured on Staggered Step " & iStep
 End Sub
 
-Public Function LoadDatabaseIntoMemory(Optional ShowSplash As Boolean = True)
+Public Function LoadDatabaseIntoMemory()
 Dim i As Long
 Dim s As String
 Dim t As Long
@@ -1109,7 +1110,7 @@ Dim a As Long
 Dim j As Long
 'On Error GoTo LoadDatabaseIntoMemory_Error
 bUpdate = True
-If ShowSplash = True Then frmSplash.lblPer = " Loading (Loading Classes) [18%] ..."
+If frmSplash.Visible = True Then frmSplash.lblPer = " Loading (Loading Classes) [18%] ..."
 i = 1
 With MRSCLASS
     .MoveLast
@@ -1137,7 +1138,7 @@ With MRSCLASS
         dbClass(i).sIBonus = !IBonus
         dbClass(i).sMBonus = !MBonus
         dbClass(i).sBaseBonus = !BaseBonus
-        s = !flags
+        s = !BaseBonus
 '        cri         Adds/subtracts Critical hit chance.
 'acc         adds/subtracts accuracy bonus
 'h/l         Bonus to HP a level
@@ -1150,6 +1151,7 @@ With MRSCLASS
 'ACl         Armor Class Bonus
 'Vis             Vision Bonus
 'mit         Max Items bonus
+'cdw         can duel wield
         If s <> "0" Then
             SplitFast LCaseFast(s), Arr, ";"
             For a = LBound(Arr) To UBound(Arr)
@@ -1182,6 +1184,8 @@ With MRSCLASS
                             dbClass(i).lMaxItemsBonus = t
                         Case "the"
                             dbClass(i).lCanSteal = t
+                        Case "cdw"
+                            dbClass(i).lCanDualWield = t
                     End Select
                 End If
             Next
@@ -1190,8 +1194,8 @@ With MRSCLASS
         .MoveNext
     Loop Until .EOF
 End With
-'if not updatelog Then UpdateList "Classes Loaded... }b(}n}i" & Time & "}n}b)"
-If ShowSplash = True Then frmSplash.lblPer = " Loading (Loading Emotions) [20%] ..."
+'If Not UpdateLog Then UpdateList "Classes Loaded... }b(}n}i" & Time & "}n}b)"
+If frmSplash.Visible = True Then frmSplash.lblPer = " Loading (Loading Emotions) [21%] ..."
 i = 1
 With MRSEMOTIONS
     .MoveLast
@@ -1210,8 +1214,8 @@ With MRSEMOTIONS
         .MoveNext
     Loop Until .EOF
 End With
-'if not updatelog Then UpdateList "Emotions Loaded... }b(}n}i" & Time & "}n}b)"
-If ShowSplash = True Then frmSplash.lblPer = " Loading (Loading Events) [21%] ..."
+'If Not UpdateLog Then UpdateList "Emotions Loaded... }b(}n}i" & Time & "}n}b)"
+If frmSplash.Visible = True Then frmSplash.lblPer = " Loading (Loading Events) [24%] ..."
 i = 1
 With MRSEVENTS
     .MoveLast
@@ -1229,8 +1233,8 @@ With MRSEVENTS
         .MoveNext
     Loop Until .EOF
 End With
-'if not updatelog Then UpdateList "Events Loaded... }b(}n}i" & Time & "}n}b)"
-If ShowSplash = True Then frmSplash.lblPer = " Loading (Loading Familiars) [22%] ..."
+'If Not UpdateLog Then UpdateList "Events Loaded... }b(}n}i" & Time & "}n}b)"
+If frmSplash.Visible = True Then frmSplash.lblPer = " Loading (Loading Familiars) [27%] ..."
 i = 1
 With MRSFAMILIARS
     .MoveLast
@@ -1242,7 +1246,7 @@ With MRSFAMILIARS
         dbFamiliars(i).sFlags = !flags
         dbFamiliars(i).sMessage2 = !Message2
         dbFamiliars(i).lLevelMax = !LevelMax
-        dbFamiliars(i).sFamName = !FamName
+        dbFamiliars(i).sFamName = !famName
         dbFamiliars(i).lLevelMod = !LevelMod
         dbFamiliars(i).dEXPPerLevel = !EXPPerLevel
         dbFamiliars(i).lMaxDam = !MaxDam
@@ -1259,8 +1263,8 @@ With MRSFAMILIARS
         .MoveNext
     Loop Until .EOF
 End With
-'if not updatelog Then UpdateList "Familiars Loaded... }b(}n}i" & Time & "}n}b)"
-If ShowSplash = True Then frmSplash.lblPer = " Loading (Loading Items) [24%] ..."
+'If Not UpdateLog Then UpdateList "Familiars Loaded... }b(}n}i" & Time & "}n}b)"
+If frmSplash.Visible = True Then frmSplash.lblPer = " Loading (Loading Items) [30%] ..."
 i = 1
 With MRSITEM
     .MoveLast
@@ -1302,8 +1306,8 @@ With MRSITEM
         .MoveNext
     Loop Until .EOF
 End With
-'if not updatelog Then UpdateList "Items Loaded... }b(}n}i" & Time & "}n}b)"
-If ShowSplash = True Then frmSplash.lblPer = " Loading (Loading Map) [26%] ..."
+'If Not UpdateLog Then UpdateList "Items Loaded... }b(}n}i" & Time & "}n}b)"
+If frmSplash.Visible = True Then frmSplash.lblPer = " Loading (Loading Map) [33%] ..."
 i = 1
 With MRSMAP
     .MoveLast
@@ -1392,33 +1396,53 @@ With MRSMAP
         
         dbMap(i).sHidden = !Hidden
         dbMap(i).sScript = !Scripting
-'        If InStr(LCaseFast(dbMap(i).sScript), "mybase.timer(") <> 0 Then
-'            ReDim Preserve dbMBTimer(UBound(dbMBTimer) + 1)
-'            sScripting 0, dbMap(i).lRoomID, , , , True, dbMBTimer(UBound(dbMBTimer)).lInterval, , dbMBTimer(UBound(dbMBTimer)).sScript
-'            With dbMBTimer(UBound(dbMBTimer))
-'                .lRoomID = dbMap(i).lRoomID
-''                Debug.Print "------------------------"
-''                Debug.Print "INDEX NUMBER : " & UBound(dbMBTimer)
-''                Debug.Print "INTERVAL     : " & .lInterval
-''                Debug.Print "SCRIPT       : " & .sScript
-''                Debug.Print "ROOM ID      : " & .lRoomID
-''                Debug.Print "------------------------"
-'            End With
-'        End If
+        'If InStr(LCaseFast(dbMap(i).sScript), "mybase.timer(") <> 0 Then
+         '   ReDim Preserve dbMBTimer(UBound(dbMBTimer) + 1)
+         '   sScripting 0, dbMap(i).lRoomID, , , , True, dbMBTimer(UBound(dbMBTimer)).lInterval, , dbMBTimer(UBound(dbMBTimer)).sScript
+         '   With dbMBTimer(UBound(dbMBTimer))
+       '         .lRoomID = dbMap(i).lRoomID
+                
+'                Debug.Print "------------------------"
+'                Debug.Print "INDEX NUMBER : " & UBound(dbMBTimer)
+'                Debug.Print "INTERVAL     : " & .lInterval
+'                Debug.Print "SCRIPT       : " & .sScript
+'                Debug.Print "ROOM ID      : " & .lRoomID
+'                Debug.Print "------------------------"
+    '        End With
+    '    End If
+        'If InStr(LCaseFast(dbMap(i).sScript), "begin.usescript ") <> 0 Then
+      '      j = 0
+       '     s = ""
+       '     sScripting 0, dbMap(i).lRoomID, , , , True, j, , s
+     '       If j <> 0 Then
+      '          ReDim Preserve dbMBTimer(UBound(dbMBTimer) + 1)
+      '          With dbMBTimer(UBound(dbMBTimer))
+      '              .lRoomID = dbMap(i).lRoomID
+      '              .lInterval = j
+      '              .sScript = s
+    '                Debug.Print "------------------------"
+    '                Debug.Print "INDEX NUMBER : " & UBound(dbMBTimer)
+    '                Debug.Print "INTERVAL     : " & .lInterval
+    '                Debug.Print "SCRIPT       : " & .sScript
+    '                Debug.Print "ROOM ID      : " & .lRoomID
+    '                Debug.Print "------------------------"
+         '       End With
+         '   End If
+    '    End If
         'dbMap(i).iSafeRoom = !Flags '
         'dbMap(i).lDeathRoom = !DeathRoom '
         'dbMap(i).iInDoor = !InDoor '
         'dbMap(i).iTrainClass = !TrainClass '
         dbMap(i).sMapFlags = !flags
-        'dbMap(i).sMapFlags = "0/0/0/0/0/0/0/0/0/0/0;0;0;0;0;0;0;0;0;0;"
+        'dbMap(i).sMapFlags = dbMap(i).sMapFlags & "/0;"
         'modMapFlags.UpdateMapFlags i
         modMapFlags.LoadMapFlags i
         i = i + 1
         .MoveNext
     Loop Until .EOF
 End With
-'if not updatelog Then UpdateList "Map Loaded... }b(}n}i" & Time & "}n}b)"
-If ShowSplash = True Then frmSplash.lblPer = " Loading (Loading Monsters) [27%] ..."
+'If Not UpdateLog Then UpdateList "Map Loaded... }b(}n}i" & Time & "}n}b)"
+If frmSplash.Visible = True Then frmSplash.lblPer = " Loading (Loading Monsters) [36%] ..."
 i = 1
 With MRSMONSTER
     .MoveLast
@@ -1460,8 +1484,8 @@ With MRSMONSTER
         .MoveNext
     Loop Until .EOF
 End With
-'if not updatelog Then UpdateList "Monsters Loaded... }b(}n}i" & Time & "}n}b)"
-If ShowSplash = True Then frmSplash.lblPer = " Loading (Loading Players) [28%] ..."
+'If Not UpdateLog Then UpdateList "Monsters Loaded... }b(}n}i" & Time & "}n}b)"
+If frmSplash.Visible = True Then frmSplash.lblPer = " Loading (Loading Players) [39%] ..."
 i = 1
 With MRS
     .MoveLast
@@ -1485,7 +1509,7 @@ With MRS
         dbPlayers(i).iDodge = !Dodge
         dbPlayers(i).iVision = !Vision
         dbPlayers(i).iEcho = !Echo
-'        dbPlayers(i).iFamID = !FamID
+        'dbPlayers(i).lFamID = !FamID
         dbPlayers(i).iHorse = !Horse
         dbPlayers(i).iInt = !Int
         dbPlayers(i).iInvitedBy = 0
@@ -1496,6 +1520,7 @@ With MRS
         dbPlayers(i).iMaxDamage = !MaxDamage
         dbPlayers(i).iPartyLeader = 0
         dbPlayers(i).iResting = 0
+        dbPlayers(i).iMeditating = 0
         dbPlayers(i).iSpellLevel = !SpellLevel
         dbPlayers(i).iSpellType = !SpellType
         dbPlayers(i).sSpells = !Spells
@@ -1508,6 +1533,7 @@ With MRS
         dbPlayers(i).lBackUpLoc = !BackUpLoc
         dbPlayers(i).lHP = !HP
         dbPlayers(i).lLocation = !Location
+        dbPlayers(i).lDBLocation = GetMapIndex(dbPlayers(i).lLocation)
         dbPlayers(i).lMana = !Mana
         dbPlayers(i).lMaxHP = !MaxHP
         dbPlayers(i).sStatline = !Statline
@@ -1517,7 +1543,7 @@ With MRS
         dbPlayers(i).sBody = !Body
         dbPlayers(i).sClass = !Class
         dbPlayers(i).sAppearance = !Appearance
-'        dbPlayers(i).sFamName = !FamName
+        'dbPlayers(i).sFamName = !famName
         dbPlayers(i).sFeet = !Feet
         dbPlayers(i).sHands = !Hands
         dbPlayers(i).sHead = !Head
@@ -1562,20 +1588,31 @@ With MRS
         dbPlayers(i).dTotalEXP = !TotalEXP
         dbPlayers(i).dStamina = !Stamina
         dbPlayers(i).dHunger = !Hunger
-'        dbPlayers(i).dFamEXP = !FamEXP
-'        dbPlayers(i).lFamCurrentHP = !FamCurrentHP
-'        dbPlayers(i).lFamMaxHP = !FamMaxHP
+        'dbPlayers(i).dFamEXP = !FamEXP
+        'dbPlayers(i).lFamCurrentHP = !FamCurrentHP
+        'dbPlayers(i).lFamMaxHP = !FamMaxHP
         dbPlayers(i).sKillDurItems = !KillDurItems
+        dbPlayers(i).sFamFlags = !FamFlags
+        modFamiliars.LoadFamFlags i
         SplitFast !Rings, Arr, ";"
         For j = 0 To 5
             dbPlayers(i).sRings(j) = Arr(j)
         Next
+        If dbPlayers(i).sShield <> "0" Then
+            With dbItems(GetItemID(, modItemManip.GetItemIDFromUnFormattedString(dbPlayers(i).sShield)))
+                If .sWorn = "weapon" Then
+                    dbPlayers(i).iDualWield = 1
+                Else
+                    dbPlayers(i).iDualWield = 0
+                End If
+            End With
+        End If
         i = i + 1
         .MoveNext
     Loop Until .EOF
 End With
-'if not updatelog Then UpdateList "Players Loaded... }b(}n}i" & Time & "}n}b)"
-If ShowSplash = True Then frmSplash.lblPer = " Loading (Loading Races) [29%] ..."
+'If Not UpdateLog Then UpdateList "Players Loaded... }b(}n}i" & Time & "}n}b)"
+If frmSplash.Visible = True Then frmSplash.lblPer = " Loading (Loading Races) [42%] ..."
 i = 1
 With MRSRACE
     .MoveLast
@@ -1596,8 +1633,8 @@ With MRSRACE
         .MoveNext
     Loop Until .EOF
 End With
-'if not updatelog Then UpdateList "Races Loaded... }b(}n}i" & Time & "}n}b)"
-If ShowSplash = True Then frmSplash.lblPer = " Loading (Loading Spells) [30%] ..."
+'If Not UpdateLog Then UpdateList "Races Loaded... }b(}n}i" & Time & "}n}b)"
+If frmSplash.Visible = True Then frmSplash.lblPer = " Loading (Loading Spells) [45%] ..."
 i = 1
 With MRSSPELLS
     .MoveLast
@@ -1631,8 +1668,8 @@ With MRSSPELLS
         .MoveNext
     Loop Until .EOF
 End With
-'if not updatelog Then UpdateList "Spells Loaded... }b(}n}i" & Time & "}n}b)"
-If ShowSplash = True Then frmSplash.lblPer = " Loading (Loading Shops) [31%] ..."
+'If Not UpdateLog Then UpdateList "Spells Loaded... }b(}n}i" & Time & "}n}b)"
+If frmSplash.Visible = True Then frmSplash.lblPer = " Loading (Loading Shops) [48%] ..."
 i = 1
 With MRSSHOPS
     .MoveLast
@@ -1650,11 +1687,69 @@ With MRSSHOPS
         .MoveNext
     Loop Until .EOF
 End With
-'if not updatelog Then UpdateList "Shops Loaded... }b(}n}i" & Time & "}n}b)"
-'if showsplash = True Then frmSplash.lblPer = " Loading (Storing Arenas And Boss rooms) [33%] ..."
-
-
-''if not updatelog Then UpdateList "Arenas And Boss Rooms Stored... }b(}n}i" & Time & "}n}b)"
+'If Not UpdateLog Then UpdateList "Shops Loaded... }b(}n}i" & Time & "}n}b)"
+If frmSplash.Visible = True Then frmSplash.lblPer = " Loading (Storing Arenas And Boss rooms) [51%] ..."
+i = 1
+j = 0
+'For i = 1 To UBound(dbMap)
+'    With dbMap(i)
+ '       Select Case .iType
+ '           Case 1 To 5
+ '               j = j + 1
+  '      End Select
+  '  End With
+'Next
+'i = 1
+'ReDim dbArenas(1 To j)
+'j = 1
+'For i = 1 To UBound(dbMap)
+'    With dbMap(i)
+ '       Select Case .iType
+ '           Case 1 To 5
+  '              dbArenas(j) = dbMap(i)
+  '              dbArenas(j).ldbMapID = i
+  '              j = j + 1
+  '      End Select
+ ''   End With
+'Next
+'If Not UpdateLog Then UpdateList "Arenas And Boss Rooms Stored... }b(}n}i" & Time & "}n}b)"
+'If frmSplash.Visible = True Then frmSplash.lblPer = " Loading (Storing Door Rooms) [54%] ..."
+'i = 1
+'j = 0
+'For i = 1 To UBound(dbMap)
+'    With dbMap(i)
+'        If .lDD <> 0 Then j = j + 1: GoTo nNextRecord
+'        If .lDU <> 0 Then j = j + 1: GoTo nNextRecord
+ ''       If .lDN <> 0 Then j = j + 1: GoTo nNextRecord
+ '       If .lDS <> 0 Then j = j + 1: GoTo nNextRecord
+ '       If .lDE <> 0 Then j = j + 1: GoTo nNextRecord
+ '       If .lDW <> 0 Then j = j + 1: GoTo nNextRecord
+ '       If .lDNW <> 0 Then j = j + 1: GoTo nNextRecord
+  '      If .lDSW <> 0 Then j = j + 1: GoTo nNextRecord
+ '       If .lDNE <> 0 Then j = j + 1: GoTo nNextRecord
+ '       If .lDSE <> 0 Then j = j + 1: GoTo nNextRecord
+'nNextRecord:
+'    End With
+'Next
+'i = 1
+'ReDim dbDoor(1 To j)
+'j = 1
+'For i = 1 To UBound(dbMap)
+ '   With dbMap(i)
+  '      If .lDD <> 0 Then dbDoor(j) = dbMap(i): dbDoor(j).ldbDoorsMapID = i: j = j + 1: GoTo nNextRecord2
+ '       If .lDU <> 0 Then dbDoor(j) = dbMap(i): dbDoor(j).ldbDoorsMapID = i: j = j + 1: GoTo nNextRecord2
+  '      If .lDN <> 0 Then dbDoor(j) = dbMap(i): dbDoor(j).ldbDoorsMapID = i: j = j + 1: GoTo nNextRecord2
+  '      If .lDS <> 0 Then dbDoor(j) = dbMap(i): dbDoor(j).ldbDoorsMapID = i: j = j + 1: GoTo nNextRecord2
+  '      If .lDE <> 0 Then dbDoor(j) = dbMap(i): dbDoor(j).ldbDoorsMapID = i: j = j + 1: GoTo nNextRecord2
+  '      If .lDW <> 0 Then dbDoor(j) = dbMap(i): dbDoor(j).ldbDoorsMapID = i: j = j + 1: GoTo nNextRecord2
+   '     If .lDNW <> 0 Then dbDoor(j) = dbMap(i): dbDoor(j).ldbDoorsMapID = i: j = j + 1: GoTo nNextRecord2
+    '    If .lDSW <> 0 Then dbDoor(j) = dbMap(i): dbDoor(j).ldbDoorsMapID = i: j = j + 1: GoTo nNextRecord2
+   '     If .lDNE <> 0 Then dbDoor(j) = dbMap(i): dbDoor(j).ldbDoorsMapID = i: j = j + 1: GoTo nNextRecord2
+   ''     If .lDSE <> 0 Then dbDoor(j) = dbMap(i): dbDoor(j).ldbDoorsMapID = i: j = j + 1: GoTo nNextRecord2
+'nNextRecord2:
+ '   End With
+'Next
+'If Not UpdateLog Then UpdateList "Rooms With Doors Stored... }b(}n}i" & Time & "}n}b)"
 bUpdate = False
 i = 1
 'If Not UpdateLog Then UpdateList "Database succesfully loaded to memory... }b(}n}i" & Time & "}n}b)"
@@ -1843,14 +1938,14 @@ Select Case WhichDB
             End If
         Next
     Case Familiars
-        For i = LBound(dbPlayers) To UBound(dbPlayers)
-            With dbPlayers(i)
-                If .iFamID = dbFamiliars(lcID).iID Then
-                    DoItemFlags i, 0, 0, , True, , , True, dbFamiliars(lcID).sFlags
-                    .sFamName = "0"
-                End If
-            End With
-        Next
+        'For i = LBound(dbPlayers) To UBound(dbPlayers)
+        '    With dbPlayers(i)
+         '       If .iFamID = dbFamiliars(lcID).iID Then
+           '         DoItemFlags i, 0, 0, , True, , , True, dbFamiliars(lcID).sFlags
+           '         .sFamName = "0"
+           '     End If
+         '   End With
+        'Next
     Case Item
         For i = LBound(dbPlayers) To UBound(dbPlayers)
             With dbPlayers(i)
@@ -2076,14 +2171,14 @@ Select Case WhichDB
             End If
         Next
     Case Familiars
-        For i = LBound(dbPlayers) To UBound(dbPlayers)
-            With dbPlayers(i)
-                If .iFamID = dbFamiliars(lcID).iID Then
-                    DoItemFlags i, 0, 0, , , , , True, dbFamiliars(lcID).sFlags
-                    .sFamName = dbFamiliars(lcID).sFamName
-                End If
-            End With
-        Next
+        'For i = LBound(dbPlayers) To UBound(dbPlayers)
+        '    With dbPlayers(i)
+        '        If .iFamID = dbFamiliars(lcID).iID Then
+        '            DoItemFlags i, 0, 0, , , , , True, dbFamiliars(lcID).sFlags
+        '            .sFamName = dbFamiliars(lcID).sFamName
+       '         End If
+        '    End With
+       ' Next
     Case Item
         For i = LBound(dbPlayers) To UBound(dbPlayers)
             With dbPlayers(i)

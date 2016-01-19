@@ -840,7 +840,7 @@ If dbAIndex <> 0 Then
 End If
 If dbVIndex <> 0 Then
     dbPlayers(dbVIndex).lHP = dbPlayers(dbVIndex).lHP - lPADamage
-    If CheckDeath(Index, True, sPAMessage, dbPlayers(dbAIndex).iIndex, sPVMessage, dbPlayers(dbVIndex).iIndex, sMessages) = True Then
+    If CheckDeath(Index, True, True, sPAMessage, sPVMessage, sMessages, False, True, False, dbPlayers(dbVIndex).iIndex) = True Then
         Exit Sub
     End If
 End If

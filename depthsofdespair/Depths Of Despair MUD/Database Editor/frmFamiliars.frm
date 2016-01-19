@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "tabctl32.ocx"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
 Begin VB.Form frmFamiliars 
    BorderStyle     =   1  'Fixed Single
@@ -105,31 +105,39 @@ Begin VB.Form frmFamiliars
       TabCaption(1)   =   "Combat"
       TabPicture(1)   =   "frmFamiliars.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "lblLabel(5)"
-      Tab(1).Control(1)=   "lblLabel(6)"
-      Tab(1).Control(2)=   "lblLabel(7)"
-      Tab(1).Control(3)=   "lblDamage"
-      Tab(1).Control(4)=   "lblLabel(20)"
-      Tab(1).Control(5)=   "lblLabel(21)"
+      Tab(1).Control(0)=   "txtMin"
+      Tab(1).Control(1)=   "Picture2"
+      Tab(1).Control(2)=   "Raise4"
+      Tab(1).Control(3)=   "txtMax"
+      Tab(1).Control(4)=   "txtMod"
+      Tab(1).Control(5)=   "txtLM"
       Tab(1).Control(6)=   "txtSwings"
-      Tab(1).Control(7)=   "txtLM"
-      Tab(1).Control(8)=   "txtMod"
-      Tab(1).Control(9)=   "txtMax"
-      Tab(1).Control(10)=   "Raise4"
-      Tab(1).Control(11)=   "Picture2"
-      Tab(1).Control(12)=   "txtMin"
+      Tab(1).Control(7)=   "lblLabel(21)"
+      Tab(1).Control(8)=   "lblLabel(20)"
+      Tab(1).Control(9)=   "lblDamage"
+      Tab(1).Control(10)=   "lblLabel(7)"
+      Tab(1).Control(11)=   "lblLabel(6)"
+      Tab(1).Control(12)=   "lblLabel(5)"
       Tab(1).ControlCount=   13
       TabCaption(2)   =   "Flags"
       TabPicture(2)   =   "frmFamiliars.frx":0038
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "flgOpts"
-      Tab(2).Control(1)=   "cboFlags"
-      Tab(2).Control(2)=   "cmdAdd"
-      Tab(2).Control(3)=   "cmdRemove"
-      Tab(2).Control(4)=   "lstFamFlags"
-      Tab(2).Control(5)=   "lblLabel(23)"
-      Tab(2).Control(6)=   "lblLabel(22)"
-      Tab(2).Control(7)=   "lblHelp"
+      Tab(2).Control(0)=   "lblHelp"
+      Tab(2).Control(0).Enabled=   0   'False
+      Tab(2).Control(1)=   "lblLabel(22)"
+      Tab(2).Control(1).Enabled=   0   'False
+      Tab(2).Control(2)=   "lblLabel(23)"
+      Tab(2).Control(2).Enabled=   0   'False
+      Tab(2).Control(3)=   "lstFamFlags"
+      Tab(2).Control(3).Enabled=   0   'False
+      Tab(2).Control(4)=   "cmdRemove"
+      Tab(2).Control(4).Enabled=   0   'False
+      Tab(2).Control(5)=   "cmdAdd"
+      Tab(2).Control(5).Enabled=   0   'False
+      Tab(2).Control(6)=   "cboFlags"
+      Tab(2).Control(6).Enabled=   0   'False
+      Tab(2).Control(7)=   "flgOpts"
+      Tab(2).Control(7).Enabled=   0   'False
       Tab(2).ControlCount=   8
       Begin ServerEditor.FlagOptions flgOpts 
          Height          =   375
@@ -1086,6 +1094,7 @@ End Sub
 Private Sub Form_Load()
 FillFams FillList:=True
 lstFamFlags.ColumnHeaders(1).Width = 10000
+modMain.PopulateCBOFlag cboFlags
 End Sub
 
 Private Sub lstFamFlags_Click()

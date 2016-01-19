@@ -208,7 +208,7 @@ BuyTheItem:
         sCost$ = .dCost
         iUses = .iUses
         iDur = .lDurability
-        If .iInGame >= .iLimit Then
+        If .iInGame >= .iLimit And .iLimit <> 0 Then
             If dbMap(dbPlayers(dbIndex).lDBLocation).iType = 1 Then
                 dbShopIndex = GetShopIndex(CLng(dbMap(dbPlayers(dbIndex).lDBLocation).sShopItems))
                 For i = 0 To 14

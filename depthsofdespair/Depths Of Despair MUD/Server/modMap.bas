@@ -218,7 +218,7 @@ If LCaseFast(X(Index)) = "map" Then
                     s = Left$(s, Len(s) - 1)
                     SplitFast s, Arr, ";"
                     For j = UBound(Arr) To LBound(Arr) Step -1
-                        Select Case modgetdata.GetShortDir(modgetdata.GetOppositeDirection(modgetdata.GetLongDir(Arr(j))))
+                        Select Case modGetData.GetShortDir(modGetData.GetOppositeDirection(modGetData.GetLongDir(Arr(j))))
                             Case "n"
                                 yy = yy - 1
                                 'n = .dN

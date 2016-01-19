@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "tabctl32.ocx"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
 Begin VB.Form frmItems 
    BorderStyle     =   1  'Fixed Single
@@ -62,7 +62,6 @@ Begin VB.Form frmItems
       _Version        =   393216
       Style           =   1
       Tabs            =   6
-      Tab             =   1
       TabsPerRow      =   6
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -76,26 +75,29 @@ Begin VB.Form frmItems
       EndProperty
       TabCaption(0)   =   "Basic Stats"
       TabPicture(0)   =   "frmItems.frx":0000
-      Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Picture6"
-      Tab(0).Control(1)=   "Picture4"
-      Tab(0).Control(2)=   "Picture3"
+      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).Control(0)=   "Line4"
+      Tab(0).Control(0).Enabled=   0   'False
+      Tab(0).Control(1)=   "Raise1"
+      Tab(0).Control(1).Enabled=   0   'False
+      Tab(0).Control(2)=   "Picture1"
+      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "Picture2"
-      Tab(0).Control(4)=   "Picture1"
-      Tab(0).Control(5)=   "Raise1"
-      Tab(0).Control(6)=   "Line4"
+      Tab(0).Control(3).Enabled=   0   'False
+      Tab(0).Control(4)=   "Picture3"
+      Tab(0).Control(4).Enabled=   0   'False
+      Tab(0).Control(5)=   "Picture4"
+      Tab(0).Control(5).Enabled=   0   'False
+      Tab(0).Control(6)=   "Picture6"
+      Tab(0).Control(6).Enabled=   0   'False
       Tab(0).ControlCount=   7
       TabCaption(1)   =   "Flags"
       TabPicture(1)   =   "frmItems.frx":001C
-      Tab(1).ControlEnabled=   -1  'True
-      Tab(1).Control(0)=   "ssFlags"
-      Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "Picture5"
-      Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "cboFlags"
-      Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "flgOpts"
-      Tab(1).Control(3).Enabled=   0   'False
+      Tab(1).ControlEnabled=   0   'False
+      Tab(1).Control(0)=   "flgOpts"
+      Tab(1).Control(1)=   "cboFlags"
+      Tab(1).Control(2)=   "Picture5"
+      Tab(1).Control(3)=   "ssFlags"
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Description"
       TabPicture(2)   =   "frmItems.frx":0038
@@ -470,7 +472,7 @@ Begin VB.Form frmItems
       Begin VB.PictureBox Picture6 
          BorderStyle     =   0  'None
          Height          =   255
-         Left            =   -74760
+         Left            =   240
          ScaleHeight     =   255
          ScaleWidth      =   8775
          TabIndex        =   79
@@ -485,7 +487,7 @@ Begin VB.Form frmItems
       End
       Begin ServerEditor.FlagOptions flgOpts 
          Height          =   375
-         Left            =   5040
+         Left            =   -69960
          TabIndex        =   24
          Top             =   600
          Width           =   735
@@ -496,7 +498,7 @@ Begin VB.Form frmItems
       Begin VB.ComboBox cboFlags 
          Height          =   315
          ItemData        =   "frmItems.frx":092C
-         Left            =   240
+         Left            =   -74760
          List            =   "frmItems.frx":09FF
          Sorted          =   -1  'True
          Style           =   2  'Dropdown List
@@ -507,7 +509,7 @@ Begin VB.Form frmItems
       Begin VB.PictureBox Picture5 
          BorderStyle     =   0  'None
          Height          =   495
-         Left            =   2400
+         Left            =   -72600
          ScaleHeight     =   495
          ScaleWidth      =   6975
          TabIndex        =   77
@@ -532,7 +534,7 @@ Begin VB.Form frmItems
       End
       Begin TabDlg.SSTab ssFlags 
          Height          =   4455
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   25
          Top             =   1080
          Width           =   9255
@@ -643,7 +645,7 @@ Begin VB.Form frmItems
             Strikethrough   =   0   'False
          EndProperty
          Height          =   2295
-         Left            =   -69840
+         Left            =   5160
          ScaleHeight     =   2295
          ScaleWidth      =   4095
          TabIndex        =   74
@@ -819,7 +821,7 @@ Begin VB.Form frmItems
             Strikethrough   =   0   'False
          EndProperty
          Height          =   2055
-         Left            =   -74760
+         Left            =   240
          ScaleHeight     =   2055
          ScaleWidth      =   4695
          TabIndex        =   68
@@ -990,7 +992,7 @@ Begin VB.Form frmItems
             Strikethrough   =   0   'False
          EndProperty
          Height          =   2535
-         Left            =   -68640
+         Left            =   6360
          ScaleHeight     =   2535
          ScaleWidth      =   2175
          TabIndex        =   61
@@ -1184,7 +1186,7 @@ Begin VB.Form frmItems
             Strikethrough   =   0   'False
          EndProperty
          Height          =   2535
-         Left            =   -74760
+         Left            =   240
          ScaleHeight     =   2535
          ScaleWidth      =   5895
          TabIndex        =   55
@@ -1339,7 +1341,7 @@ Begin VB.Form frmItems
       End
       Begin ServerEditor.Raise Raise1 
          Height          =   5175
-         Left            =   -74880
+         Left            =   120
          TabIndex        =   78
          Top             =   360
          Width           =   9375
@@ -1466,8 +1468,8 @@ Begin VB.Form frmItems
          Width           =   675
       End
       Begin VB.Line Line4 
-         X1              =   -70680
-         X2              =   -70680
+         X1              =   4320
+         X2              =   4320
          Y1              =   480
          Y2              =   3050
       End
@@ -1641,10 +1643,10 @@ Select Case cboWorn.list(cboWorn.ListIndex)
         cboArmorType.Enabled = False
         If cboWeaponType.list(cboWeaponType.ListIndex) = "3  = 2h Bows" Then txtUses.Enabled = False
         If cboWorn.list(cboWorn.ListIndex) = "projectile" Then
-            SSTab.TabEnabled(5) = True
-            SSTab.TabEnabled(1) = False
-            SSTab.TabEnabled(3) = False
-            SSTab.TabEnabled(4) = False
+            ssTab.TabEnabled(5) = True
+            ssTab.TabEnabled(1) = False
+            ssTab.TabEnabled(3) = False
+            ssTab.TabEnabled(4) = False
             cboWeaponType.Enabled = False
             txtSpeed.Enabled = False
             txtSD.Enabled = False
@@ -1654,10 +1656,10 @@ Select Case cboWorn.list(cboWorn.ListIndex)
             lblUses.Caption = "Supply Ammo:"
             lblUses.FontBold = True
         Else
-            SSTab.TabEnabled(5) = False
-            SSTab.TabEnabled(1) = True
-            SSTab.TabEnabled(3) = True
-            SSTab.TabEnabled(4) = False
+            ssTab.TabEnabled(5) = False
+            ssTab.TabEnabled(1) = True
+            ssTab.TabEnabled(3) = True
+            ssTab.TabEnabled(4) = False
             cboWeaponType.Enabled = True
             txtSpeed.Enabled = True
             txtSD.Enabled = True
@@ -1673,7 +1675,7 @@ Select Case cboWorn.list(cboWorn.ListIndex)
             Next
         End If
         txtAC.Enabled = True
-        SSTab.TabEnabled(4) = False
+        ssTab.TabEnabled(4) = False
         chkUseFlgs2.Enabled = False
         txtScripting.Enabled = False
         ssFlags.TabEnabled(1) = False
@@ -1689,12 +1691,12 @@ Select Case cboWorn.list(cboWorn.ListIndex)
             Me.Controls("txtOth" & i).Text = ""
         Next
         If cboWorn.list(cboWorn.ListIndex) = "item" Then
-            SSTab.TabEnabled(4) = True
+            ssTab.TabEnabled(4) = True
         Else
-            SSTab.TabEnabled(5) = False
-            SSTab.TabEnabled(4) = False
-            SSTab.TabEnabled(1) = True
-            SSTab.TabEnabled(3) = True
+            ssTab.TabEnabled(5) = False
+            ssTab.TabEnabled(4) = False
+            ssTab.TabEnabled(1) = True
+            ssTab.TabEnabled(3) = True
         End If
         txtMsg1.Enabled = True
         cboArmorType.Enabled = False
@@ -1716,10 +1718,10 @@ Select Case cboWorn.list(cboWorn.ListIndex)
             Me.Controls("txtVic" & i).Text = ""
             Me.Controls("txtOth" & i).Text = ""
         Next
-        SSTab.TabEnabled(5) = False
-        SSTab.TabEnabled(4) = False
-        SSTab.TabEnabled(1) = True
-        SSTab.TabEnabled(3) = True
+        ssTab.TabEnabled(5) = False
+        ssTab.TabEnabled(4) = False
+        ssTab.TabEnabled(1) = True
+        ssTab.TabEnabled(3) = True
         txtMsg1.Enabled = True
         cboArmorType.Enabled = False
         cboWeaponType.Enabled = False
@@ -1740,10 +1742,10 @@ Select Case cboWorn.list(cboWorn.ListIndex)
             Me.Controls("txtVic" & i).Text = ""
             Me.Controls("txtOth" & i).Text = ""
         Next
-        SSTab.TabEnabled(5) = False
-        SSTab.TabEnabled(4) = False
-        SSTab.TabEnabled(1) = True
-        SSTab.TabEnabled(3) = True
+        ssTab.TabEnabled(5) = False
+        ssTab.TabEnabled(4) = False
+        ssTab.TabEnabled(1) = True
+        ssTab.TabEnabled(3) = True
         cboArmorType.Enabled = True
         cboWeaponType.Enabled = False
         txtUses.Enabled = False
@@ -1754,7 +1756,7 @@ Select Case cboWorn.list(cboWorn.ListIndex)
         chkSD.Enabled = True
         lblLabel(2).Caption = "Min Damage:"
         lblLabel(3).Caption = "Max Damage:"
-        SSTab.TabEnabled(5) = False
+        ssTab.TabEnabled(5) = False
 End Select
 End Sub
 
@@ -2009,6 +2011,7 @@ For i = LBound(dbItems) To UBound(dbItems)
         End If
     End With
 Next
+modMain.PopulateCBOFlag cboFlags
 End Sub
 
 
@@ -2191,9 +2194,9 @@ For i = LBound(dbItems) To UBound(dbItems)
             txtLevelRestriction.Text = .lLevel
             modMain.SetCBOlstIndex cboArmorType, .iArmorType, [Armor Type]
             If cboWorn.list(cboWorn.ListIndex) = "projectile" Then
-                SSTab.TabEnabled(5) = True
-                SSTab.TabEnabled(1) = False
-                SSTab.TabEnabled(3) = False
+                ssTab.TabEnabled(5) = True
+                ssTab.TabEnabled(1) = False
+                ssTab.TabEnabled(3) = False
                 cboWeaponType.Enabled = False
                 txtSpeed.Enabled = False
                 txtSD.Enabled = False
@@ -2208,9 +2211,9 @@ For i = LBound(dbItems) To UBound(dbItems)
                 chkUseFlgs2.Enabled = False
                 txtUses.Enabled = True
             ElseIf cboWorn.list(cboWorn.ListIndex) = "weapon" Then
-                SSTab.TabEnabled(5) = False
-                SSTab.TabEnabled(1) = True
-                SSTab.TabEnabled(3) = True
+                ssTab.TabEnabled(5) = False
+                ssTab.TabEnabled(1) = True
+                ssTab.TabEnabled(3) = True
                 cboWeaponType.Enabled = True
                 txtSpeed.Enabled = True
                 txtSD.Enabled = True
