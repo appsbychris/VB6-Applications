@@ -1,0 +1,9 @@
+Item                            Scales    Gold
+----------------------------------------------
+crocodile scale tunic             15       980
+crocodile scale leggings          13       720
+crocodile scale boots             8        400
+crocodile scale helm              8        450
+crocodile scale belt              4        200
+crocodile scale guantlets         6        375
+crocodile scale necklace          1        120

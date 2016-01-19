@@ -1,0 +1,69 @@
+Syntax            Required Fields                     Effect
+(a)ttack          [monster] or [player]               attacks the specified monster or player
+(invite)          player you are inviting             invites a specified player
+(join)            None                                joins the party of the person who invited you
+(party)           None                                List the members of the party you are in
+(l)ook            None,Player,Monster,Item,Direction  Looks at the specified thing, if None, then looks at room
+(n)orth           None                                Moves North
+(s)outh           None                                Moves South
+(e)ast            None                                Moves East
+(w)est            None                                Moves West
+(u)p              None                                Moves Up
+(d)own            None                                Moves Down
+(nw)northwest     None                                Moves Nortwest
+(ne)northeast     None                                Moves Northeast
+(sw)southwest     None                                Moves Southwest
+(se)southeast     None                                Moves Southeast
+(i)nventory       None                                List all your items and gold
+(g)et             Item or GOLD your getting           picks up the specified item, or all gold in room
+(use)             Item your useing                    uses the specified item
+(who)             None                                List all players in game
+(rem)ove          Item your removeing                 Removes the item your wearing
+(eq)uip           Item your equiping                  Equips the specified item
+(list)            None                                List the items in a shop
+(drop)            Item your dropping                  Drops the specified item
+(buy)             Item your buying                    Lets you purchase the specified item
+(stat)            None                                List your stats
+(rest)            None                                Puts you in Rest mode, regening more HPs
+(exp)             None                                Shows how much EXP you have, Need, and % to Level
+(train)           None                                Trains you to the next level at a trainer
+(brod)cast        What you are saying                 Tells the whole game your phrase
+(sell)            Item you wish to sell               Sells an item at a shop for 1/3 of the buying price.      
+(spells)          None                                List the spells you currently have
+(/[user])         What you want to say                Sends a private message to the specified user.
+(cast)            [SpellShort] [target,if any]        Uses a spell on a target, or if None, yourself
+(say [keyword])   Keyword                             Used for quest...say the keyword for the quest
+(sys con)         Item Name                           If sysop, conjures an item to your inventory
+(sys tel)         Room #                              If sysop, teleports you to a certain room
+(sys add exp)     Amount of EXP                       If sysop, adds that amount of EXP to you
+(emotions)        None                                List of all the emotions you can do
+(emotename)       Optional [player name]              Does the emotions, or does the emotion on a player
+(kill fam)iliar   None                                Kills your familiar
+(suicide)         None, Will ask a Y/N                If you choose (Y)es, you will be killed
+(open [dir])      Direction of the door               Opens the door if the door isn't locked
+(close [dir])     Direction of the door               Closes a door
+(put [key] [dir]) Key, Direction of door              Unlocks a door useing the key
+(lock [dir])      Direction of door                   Locks a door in the specified direction
+(pick [dir])      Direction of door                   A chance that you can pick the lock of a door
+(bash [dir])      Direction of door                   A chance of bashing a door open
+(break)           None                                Breaks off combat
+(top)             None                                List the top 10 people in the game
+(hide [item])     Item's name 			      Hides an item in the room
+(sea)rch          None                     	      Searchs the room for hidden items
+(go [keyword])    Keyword required		      Moves to another room
+(create guild [n])
+(add member [n])
+(disband guild)
+(join guild)
+(remove member [n])
+(guild)
+(gu)ild [text]
+(top guild)
+(train stats)
+(write [title],[message])
+(append [title],[message])
+(destroy [title])
+(destroy all letters)
+(sys ghost)
+(sys list users)
+

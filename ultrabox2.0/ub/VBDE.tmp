@@ -1,0 +1,35 @@
+VERSION 5.00
+Begin VB.UserControl UltraBox 
+   AutoRedraw      =   -1  'True
+   BackColor       =   &H00C0C0C0&
+   ClientHeight    =   2925
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   5805
+   BeginProperty Font 
+      Name            =   "Tahoma"
+      Size            =   8.25
+      Charset         =   0
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
+   ScaleHeight     =   2925
+   ScaleWidth      =   5805
+   ToolboxBitmap   =   "ucListBox.ctx":0000
+   Begin VB.PictureBox picMain 
+      Appearance      =   0  'Flat
+      AutoRedraw      =   -1  'True
+      BackColor       =   &H80000005&
+      BorderStyle     =   0  'None
+      ForeColor       =   &H80000008&
+      Height          =   855
+      Left            =   840
+      ScaleHeight     =   855
+      ScaleWidth      =   2775
+      TabIndex        =   0
+      Top             =   720
+      Width           =   2775
+   End
+End

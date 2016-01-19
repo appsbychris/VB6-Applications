@@ -1,0 +1,56 @@
+Misc field
+
+0	Can Attack	0 or 1
+1	Can Cast Spell	0 or 1
+2	Can Sneak	0 or 1
+3	Gibberish Talk	0 or 1
+4	Guild Rank	0 to 5 (Leader, General, Lieutenant, Soldier, Normal, Scrub
+5	Invisible	0 or 1
+6	Can Eq Head	0 or 1
+7	Can Eq Face	0 or 1
+8	Can Eq Ears	0 or 1
+9	Can Eq Neck	0 or 1
+10	Can Eq Body	0 or 1
+11	Can Eq Back	0 or 1
+12	Can Eq Arms	0 or 1
+13	Can Eq Shield	0 or 1
+14	Can Eq Hands	0 or 1
+15	Can Eq Legs	0 or 1
+16	Can Eq Feet	0 or 1
+17	Can Eq Waist	0 or 1
+18	Can Eq Weapon	0 or 1
+19	Can Be De-Sysed	0 or 1
+20	See Invisible	0 or 1
+21	See Hidden	0 or 1
+22	Can Eq Ring0	0 or 1
+23	Can Eq Ring1	0 or 1
+24	Can Eq Ring2	0 or 1
+25	Can Eq Ring3	0 or 1
+26	Can Eq Ring4	0 or 1
+27	Can Eq Ring5	0 or 1
+28      Can DualWield   0 or 1
+29	Can Steal	0 or 1
+30	Can Backstab	0 or 1
+0000000000000000000000000000000
+
+
+StatsPlus
+0	Spell Casting Base	
+1	Spell Casting Bonus
+2	Magic Resistance Base
+3	Magic Resistance Bonus
+4	Perception Base
+5	Perception Bonus
+6	Is A Sysop		0 or 1
+7	Pallete Number		0 to 4
+8	Max Items Base
+9	Max Items Bonus
+10	Stealth Base
+11	Stealth Bonus
+12	Animal Relations Base
+13	Animal Relations Bonus
+14	Thieving Base
+15	Thieving Bonus
+01,03,05,09,11,13,15
+
+0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0

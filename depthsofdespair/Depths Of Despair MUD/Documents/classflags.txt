@@ -1,0 +1,15 @@
+Class flags:
+Flag Name		Does
+cri			Adds/subtracts Critical hit chance.
+acc			adds/subtracts accuracy bonus
+h/l			Bonus to HP a level
+m/l                	Bonus to MA a level
+dam			Bonus to max damage
+sne			Can sneak (value of 0 or 1)
+cbs                 	Can Backstab (value of 0 or 1)
+pts         		Train point bonus per level
+dog			Dodge bonus
+ACl			Armor Class Bonus
+Vis 			Vision Bonus
+mit			Max Items bonus
+

@@ -1,0 +1,1 @@
+use this to edit the image file the the intellisence for the scripting language of the mud.

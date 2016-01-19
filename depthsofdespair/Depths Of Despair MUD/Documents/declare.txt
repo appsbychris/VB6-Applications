@@ -1,0 +1,54 @@
+Begin.declare VARIABLE style.* = PARAMS
+
+style.*
+      Static
+      Random
+      String
+
+PARAMS
+
+If style.static then: PARAMS = A number, may be a stat.*
+if style.random then: PARAMS = 2 numbers, format of LBOUND,UBOUND
+if style.string then: PARAMS = A string of text, may be a player.*
+
+
+begin.declare shopname style.string = town shop
+begin.declare healpts style.random = 1,7
+begin.declare curhp style.static = stat.hp
+begin.declare maxhp style.static = stat.maxhp
+mybase.checkfirst
+if check.message=*heal me*
+respond.send,color.lightblue & ;The shopname heals you for healpts.; & newline & color.green & ;You were at curhp/maxhp;
+respond.gainhp,healpts
+onfail(**)\\
+
+mybase.timer(1)
+if check.hasequiped(basic sword)
+respond.send,color.brightwhite & ;God mends your wounds.;
+respond.castsp,player,11,God
+onfail(**)\\
+
+
+
+
+
+if check.message=*trade in these*
+if check.items(basic sword,cloth helm,cloth boots,cloth pants)
+respond.appearance.haircolor,3
+respond.takeitem,basic sword
+respond.takeitem,cloth helm
+respond.takeitem,cloth boots
+respond.takeitem,cloth pants
+onfail(**)
+onfail(**)\\
+
+mybase.checkfirst
+if check.isadirection()
+    if check.isdir(direction.south)
+        if check.statcheck(stat.gold,signs.>=,5)
+	    respond.noerase
+            respond.givegold,-5
+            respond.send,color.brightyellow & ;You pay 5 gold in toll charges.;
+        onfail(*color.brightwhite & ;You cannot offord the toll;*)
+    onfail(**)
+onfail(**)\\

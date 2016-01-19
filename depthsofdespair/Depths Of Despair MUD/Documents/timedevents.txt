@@ -1,0 +1,77 @@
+respond.timedevent.add,[player id],[Event id],[time ready],doevent.*,[setting]
+   'Store in players, ActiveEvents. [eventid]:[event];
+
+respond.timedevent.add,1,1,12:12:12;12/25/2002,doevent.addevent,0
+respond.timedevent.add,1,2,12:12:12;12/25/2002,doevent.removeevent,1
+
+DoEvent.*
+   [addevent] 'Adds an event to the user (users events are basically flags that the game uses to determine if the user is ready
+   [removeevent] 'Will remove an event with the ID supplied in the settings parameter
+
+Players will have 2 fields.
+ActiveEvents: This will hold events that the time has yet to expire on
+ReadyEvents:  This has all the events that are ready for the user to complete.
+   
+
+
+check.event.find(CustomID) 'If event is FINISHED, will continue
+check.event.notthere(CustomID) 'If event is NOT THERE, will continue
+respond.event.erase(CustomID) 'Will erase the event
+respond.event.add(CustomID,EndDate,ExpireDate) 'Will add an event Enddate = hh:mm:ss/m:d:y
+
+if check.message=*forge nermin*
+if check.haveitem(115)
+if check.haveitem(basic sword)
+if check.event.notthere(nermin)
+respond.takeitem,115
+respond.takeitem,basic sword
+respond.event.add,nermin,0:0:0/0:10:0,0:0:0/0:0:2
+respond.send,color.green & ;The forge master takes your items.; & newline & ;He says to you, "; & color.white & ;Come back in around 10 days, and I'll have it ready for you.; & color.green & ;"; & newline & color.green & ;He continues, "; & color.white & ;Just ; & color.brightgreen & ;ask; & color.white & ; me ; & color.brightgreen & ;about; & color.white & ;the ; & color.brightgreen & ;Nermin Blade; & color.white & ;, and if its done, I'll get it to you right away. Remember, this will cost you ; & color.lightblue & ;75 gold.; & color.green & ;";
+onfail(*color.brightred & ;He exclaims, "; & color.white & ;You already have a sword being worked on!; & color.green & ;";*)
+onfail(*color.brightred & ;He exclaims, "; & color.white & ;You don't have a basic sword to forge on!; & color.green & ;";*)
+onfail(*color.brightred & ;He exclaims, "; & color.white & ;You don't have a bottle of nermin's dust to use!; & color.green & ;";*)
+onfail(**)\\
+if check.in(ask)
+if check.in(about)
+if check.in(nermin blade)
+if check.event.find(nermin)
+if check.event.hasstarted(nermin)
+if check.event.finished(nermin)
+if check.statcheck(stat.gold,signs.>=,75)
+respond.event.erase,nermin
+respond.giveitem,nermin blade
+respond.send,color.green & ;He says, "; & color.white & ;Here is your freshly made sword!; & color.green & ;";
+respond.givegold,-75
+onfail(*color.brightred & ;He exclaims, "; & color.white & ;You don't have the amount of money we areed upon!; & color.green & ;";*)
+onfail(*color.brightred & ;He exclaims, "; & color.white & ;It takes time to create such a wonderful weapon. Be paitent.;*)
+onfail(*color.brightred & ;He exclaims, "; & color.white & ;It takes time to create such a wonderful weapon. Be paitent.;*)
+onfail(*color.brightred & ;He exclaims, "; & color.white & ;You don't have a sword being worked on!; & color.green & ;";*)
+onfail(**)
+onfail(**)
+onfail(**)\\
+
+
+if check.message=*enchant basic sword*
+if check.has(eq.weapon)
+if check.hasequiped(basic sword)
+if check.statcheck(stat.gold,signs.>=,15)
+respond.clear.enchant.weapon
+respond.enchant.weapon,enchantment.castspell;3
+respond.clear.adjectives.weapon
+respond.adjectives.weapon,flaming
+respond.send,color.brightyellow & ;Done!;
+onfail(*You don't have enough cash!*)
+onfail(*You don't have a basic sword equiped!*)
+onfail(*You don't have a weapon equiped!*)
+onfail(**)\\
+
+begin.declare PLAYERSNAME style.string = player.namepossesive
+if check.message=*engrave weapon*
+if check.statcheck(stat.gold,signs.>=,250)
+if check.has(eq.weapon)
+respond.adjectives.weapon,PLAYERSNAME
+respond.givegold,-250
+respond.send,color.green & ;The forger takes your weapon and engraves your name on it;
+onfail(*You don't have a weapon!*)
+onfail(*color.brightred & ;The charge is 250 gold!;*)
+onfail(**)\\

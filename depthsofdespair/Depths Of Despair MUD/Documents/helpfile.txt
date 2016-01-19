@@ -1,0 +1,31 @@
+[keyword=attack]
+Attacking
+Syntax: a [monster name] or [player name]
+This will intiate Auto-Combat on the targeted monster or player.;
+[keyword=invite]
+Inviting
+Syntax: invite [player name]
+If the targeted player is in the current room, and is not hidden, you will invite them to join your traval party.
+See Also: Join, Leave, Remove, Party;
+[keyword=join]
+Syntax: join
+If you have been invited into a travel party, you will gather with the party.  The person who invited you has to be in the same room as you, and cannot be hidden.
+See Also: Invite, Leave, Remove, Party;
+[keyword=party]
+Syntax: party
+If you are in a travel party, this command will list the party's status.  It will show who is in the party, who is leading, HP and MA percentages (%), and whether they are resting or not.
+See Also: Invite, Leave, Remove, Join;
+[keyword=movement]
+Syntax; varies
+You can move through out the realm in 10 different directions.
+n : North
+s : South
+e : East
+w : West
+u : Up
+d : Down
+nw: Northwest
+sw: Southwest
+ne: Northeast
+se: Southeast
+Simply type these directions out, and if there is an exit in that direction, you will travel that way.;

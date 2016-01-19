@@ -1,0 +1,16 @@
+Room ID         #
+Room Title      abc
+Mon #'s         #'s
+Player #'s      #'s
+Items	        #'s
+Hidden	        #'s
+Enviroment      (Indoor, Outdoor, Underground)
+Max Regen       #
+Mon Group       #
+Special Mon     #
+Special Item    #
+Light Value     #
+Safe Room       (Yes,No)
+Death Room      #
+Room Type       # (0:Normal,1:Shop,2:Level Trainer,3:Arena,4:Boss,5:Bank,6:Class Trainer)
+Trains Class    #

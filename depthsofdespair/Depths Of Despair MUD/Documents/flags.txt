@@ -1,0 +1,94 @@
+
+
+
+ _________________________________________________
+ \         Spell Flags                           /
+  \_____________________________________________/
+
+'tel# 'teleport, -1,-2, room num
+'stu# 'stun
+'lig# 'light
+'cri# 'crits
+'Acc# 'acc
+'dam# 'damage
+'Str# 'strengh
+'agi# 'agility
+'cha# 'charm
+'dex# 'dexterity
+'int# 'intelect
+'chp# 'current hp
+'mHP# 'max hp
+'cma# 'current mana
+'mma# 'max mana
+'hun# 'hunger
+'sta# 'stamina
+'cac# 'current AC
+'EXP# 'current EXP
+'txp# 'total exp
+'gol# 'gold
+'dod# 'dodge
+'ban# 'bank
+'vis# 'vision
+'mit# 'max items
+'ccp# 'current CP
+'evi# 'evil points
+'pap# 'paper
+'mit# 'make item
+'clp# 'class points
+'thi# 'thieving bonus
+
+ _________________________________________________
+ \         Item  Flags                           /
+  \_____________________________________________/
+
+'tel# 'teleport, -1,-2, room num
+'stu# 'stun
+'lig# 'light
+'cri# 'crits
+'Acc# 'acc
+'dam# 'damage
+'Str# 'strengh
+'agi# 'agility
+'cha# 'charm
+'dex# 'dexterity
+'int# 'intelect
+'chp# 'current hp
+'mHP# 'max hp
+'cma# 'current mana
+'mma# 'max mana
+'hun# 'hunger
+'sta# 'stamina
+'cac# 'current AC
+'dod# 'dodge
+'vis# 'vision
+'mit# 'max items
+'evi# 'evil points
+'pap# 'paper
+'mat# 'make item
+'SndABC 'Send a message
+'sRoABC 'Send a message to the room
+'gsp# 'Give spell
+'gfa# 'give familiar
+'thi# 'thieving bonus
+'el0-el8
+'m00-m21
+'s##
+
+ _________________________________________________
+ \         Class Flags                           /
+  \_____________________________________________/
+
+cri			Adds/subtracts Critical hit chance.
+acc			adds/subtracts accuracy bonus
+h/l			Bonus to HP a level
+m/l                	Bonus to MA a level
+dam			Bonus to max damage
+sne			Can sneak (value of 0 or 1)
+cbs                 	Can Backstab (value of 0 or 1)
+pts         		Train point bonus per level
+dog			Dodge bonus
+ACl			Armor Class Bonus
+Vis 			Vision Bonus
+mit			Max Items bonus
+the			can theive (0 or 1)
+cdw			can dual wield (0 or 1)

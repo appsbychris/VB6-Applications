@@ -1,0 +1,242 @@
+Type=Exe
+Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\WINDOWS\System32\stdole2.tlb#OLE Automation
+Reference=*\G{00025E01-0000-0000-C000-000000000046}#5.0#0#..\..\..\Common Files\Microsoft Shared\DAO\dao360.dll#Microsoft DAO 3.6 Object Library
+Object={248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0; MSWINSCK.OCX
+Module=modMain; Module1.bas
+Module=modIP; modIP.bas
+Module=modSpeaking; modSpeaking.bas
+Module=modMonsters; modMonsters.bas
+Module=modStats; modStats.bas
+Module=modLooking; modLooking.bas
+Module=modInventory; modEQ.bas
+Module=modGetDropRem; modGetDropRem.bas
+Module=modShop; modShop.bas
+Module=modMovement; modMovement.bas
+Module=modLogon; modLogon.bas
+Module=modNewChar; modNewChar.bas
+Module=modMisc; modMisc.bas
+Module=modTrain; modTrain.bas
+Module=modUseItems; modUseItems.bas
+Module=modEmotions; modEmotions.bas
+Module=modPartyCommands; modPartyCommands.bas
+Module=modAttackHelpers; modAttackHelpers.bas
+Module=modSysopCommands; modSysopCommands.bas
+Module=modSpells; modSpells.bas
+Module=modMiscFlag; modQuest.bas
+Module=modSuicide; modSuicide.bas
+Module=modSmartFind; modSmartFind.bas
+Module=modFamiliars; modFamiliars.bas
+Form=frmUserDefined.frm
+Module=modHelp; modHelp.bas
+Object={F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0; COMDLG32.OCX
+Module=modBank; modBank.bas
+Module=modGiveItems; modGiveItems.bas
+Module=modUpdateDatabase; modUpdateDatabase.bas
+Module=modFast; modFast.bas
+Form=frmAbout.frm
+Module=modDoors; modDoors.bas
+Module=modList; modList.bas
+Module=modBreak; modBreak.bas
+Module=modHiddenItems; modHiddenItems.bas
+Module=modResist; modGo.bas
+Form=frmSplash.frm
+Module=modRoaming; modRoaming.bas
+Module=modGuild; modGuild.bas
+Module=modEvil; modEvil.bas
+Module=modScripts; modScripts.bas
+Module=modItemManip; modItemManip.bas
+UserControl=Raise.ctl
+Module=modSec; modSec.bas
+Module=modDataTypes; modDataTypes.bas
+Module=modANSIConst; modANSIConst.bas
+Module=modDoEvents; modDoEvents.bas
+Module=modWndManip; modWndManip.bas
+Module=modINI; modINI.bas
+Module=modTime; modTime.bas
+Module=modLetters; modLettters.bas
+Form=Form1.frm
+UserControl=eButton.ctl
+UserControl=NumOnlyText.ctl
+Module=modDesc; modDesc.bas
+Module=modClasses; modClasses.bas
+Module=modWeaponsAndArmor; modWeapons.bas
+Module=modCombat; Combat.bas
+Module=modHunger; modHunger.bas
+Module=modSneaking; modSneaking.bas
+Module=modTame; modTame.bas
+Form=frmIPS.frm
+Module=modDebug; modDebug.bas
+Module=modSet; modSet.bas
+Form=frmPort.frm
+Module=modRide; modRide.bas
+Module=modAid; modAid.bas
+Module=modDoSubs; modDoSubs.bas
+Module=modMap; modMap.bas
+Module=modAppearance; modAppearance.bas
+UserControl=ucListBox.ctl
+Module=modReload; modReload.bas
+Module=modMapFlags; modmapflags.bas
+Form=frmGraphics.frm
+UserControl=ucANSI.ctl
+UserControl=ucColors.ctl
+Module=modTheiving; modTheiving.bas
+Form=frmImport.frm
+Module=modValidate; modValidate.bas
+Module=modDatabase; modDatabase.bas
+Module=modGetData; modGetData.bas
+Module=modSC; modSC.bas
+Module=modNumsToWords; modNumsToWords.bas
+IconForm="frmMain"
+Startup="Sub Main"
+HelpFile=""
+Title="Server"
+ExeName32="MUDServer.exe"
+Command32=""
+Name="DoDMudServer"
+HelpContextID="0"
+CompatibleMode="0"
+MajorVer=1
+MinorVer=0
+RevisionVer=4
+AutoIncrementVer=0
+ServerSupportFiles=0
+VersionComments="Created by Chris Van Hooser"
+VersionCompanyName="Chris Van Hooser"
+VersionFileDescription="Depths of Despair MUD Server® - A MUD Server and Game created by Chris Van Hooser"
+VersionLegalCopyright="© 2002 Chris Van Hooser"
+VersionLegalTrademarks="Chris Van Hooser"
+VersionProductName="Depths of Despair MUD Server®"
+CompilationType=0
+OptimizationType=0
+FavorPentiumPro(tm)=0
+CodeViewDebugInfo=0
+NoAliasing=0
+BoundsCheck=0
+OverflowCheck=0
+FlPointCheck=0
+FDIVCheck=0
+UnroundedFP=0
+StartMode=0
+Unattended=0
+Retained=0
+ThreadPerObject=0
+MaxNumberOfThreads=1
+RemoveUnusedControlInfo=0
+
+[MS Transaction Server]
+AutoRefresh=1
+
+[TaskList]
+Num=16
+
+[TASK1]
+Description=Finish Scripting
+Status=1
+Priority=1
+AssignedTo=
+Comment=
+
+[TASK2]
+Description=Fix Room Spells
+Status=1
+Priority=2
+AssignedTo=
+Comment=
+
+[TASK3]
+Description=Make Items Cast bless/attack on other things
+Status=0
+Priority=0
+AssignedTo=
+Comment=
+
+[TASK4]
+Description=Add poison
+Status=0
+Priority=0
+AssignedTo=
+Comment=
+
+[TASK5]
+Description=Add Uses to items
+Status=0
+Priority=1
+AssignedTo=
+Comment=
+
+[TASK6]
+Description=Spellcasting...
+Status=1
+Priority=1
+AssignedTo=
+Comment=
+
+[TASK7]
+Description=Safe Rooms
+Status=1
+Priority=1
+AssignedTo=
+Comment=
+
+[TASK8]
+Description=Room spell on death area
+Status=0
+Priority=2
+AssignedTo=
+Comment=
+
+[TASK9]
+Description=Death room
+Status=1
+Priority=1
+AssignedTo=
+Comment=
+
+[TASK10]
+Description=Add more script commands
+Status=1
+Priority=0
+AssignedTo=
+Comment=
+
+[TASK11]
+Description=Make summon spells
+Status=0
+Priority=0
+AssignedTo=
+Comment=
+
+[TASK12]
+Description=Add command stacking
+Status=0
+Priority=2
+AssignedTo=
+Comment=
+
+[TASK13]
+Description=Make Run On Startup
+Status=0
+Priority=1
+AssignedTo=
+Comment=
+
+[TASK14]
+Description=Make hard to crack
+Status=0
+Priority=1
+AssignedTo=
+Comment=
+
+[TASK15]
+Description=Fix Editor
+Status=1
+Priority=1
+AssignedTo=
+Comment=
+
+[TASK16]
+Description=Finish Client
+Status=1
+Priority=0
+AssignedTo=
+Comment=

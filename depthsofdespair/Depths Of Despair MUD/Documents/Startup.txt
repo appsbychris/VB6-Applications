@@ -1,0 +1,28 @@
+; & color.brightyellow & ;Welcome to the ; & color.brightred & ;Depths of Despair. ; & color.brightyellow & newline & ;Insert thy name to continue, or if; & newline & ;you have yet to join, type "; & color.brightgreen & ;new; & color.brightyellow & ;": ;
+
+color.brightred & ;That player is already online; & newline & ;Choose a different account, or create a new one.; & newline & ;If you wish to create a new one, type ""; & color.brightyellow & ;new; & color.brightred & ;""; & newline & ;Otherwise, type the name of another account.: ;
+
+color.brightyellow & ;Input your secrect code: ;
+
+
+---
+
+color.yellow & ;Character developemnt:; & newline & color.lightblue & 
+;====================================================================; & newline & 
+;Choose your hair length; & newline & color.bgred & ;None; & newline & color.white & 
+;Short; & newline & ;Ear-Length; & newline & ;Shoulder Length; & newline & ;Mid-Back Length; & newline & 
+;Lower-Back Length; & newline & ;Thigh Length;
+
+color.yellow & ;Character developemnt:; & newline & color.lightblue & 
+;====================================================================; & newline & 
+;Choose your hair color; & newline & color.bgred & ;Black; & newline & color.white & 
+;Brown; & newline & ;Blond; & newline & ;Yellow; & newline & ;White; & newline & 
+;Green; & newline & ;Blue;
+
+sSend lngIndex, ";" & ANSICLS & "; & color.yellow & ;Character developemnt:; & newline & color.lightblue & ;====================================================================; & newline & ;Choose your hair style; & newline & color.bgred & ;Straight; & newline & color.white & ;Curly; & newline & ;Flat; & newline & ;Ragged; & newline & ;Dirty; & newline & ;Messy; & newline & ;Fluffy" & SetMoveCursor(4, 1) & ";", ""
+
+color.yellow & ;Character developemnt:; & newline & color.lightblue & 
+;====================================================================; & newline & 
+;Choose your eye color; & newline & color.bgred & ;Black; & newline & color.white & 
+;Brown; & newline & ;Sea Blue; & newline & ;Yellow; & newline & ;White; & newline & 
+;Green; & newline & ;Blue;

@@ -1,0 +1,85 @@
+Class Weapons:
+0 - 1h Sharp
+1 - 1h Blunt
+2 - Only 1h
+3 - Any 1h, 2h Bows
+4 - Any 1h, 2h Staves
+5 - Short Only
+6 - 2h Bows and 1h Sharp Short
+7 - 2h Sharp
+8 - 2h Blunt
+9 - Only 2h
+10- Sharp Only
+11- Blunt Only
+12- Long Only
+13- All
+
+Weapons...
+1  = 1h Sharp Short
+2  = 1h Sharp Long
+3  = 2h Bows
+4  = 1h Blunt Short
+5  = 1h Blunt Long
+6  = 2h Sharp Short
+7  = 2h Sharp Long
+8  = 2h Blunt Short
+9  = 2h Blunt Long
+10 = 2h Staves
+11 = 1h Only
+12 = 2h Bows only And Sharp Short
+13 = 2h Staves only And Sharp Short
+14 = 2h only
+15 = Sharp only
+16 = Blunt only
+17 = Any
+
+Armor...
+0,1= Nothing
+2  = Silk
+3  = Padded
+4  = Robes
+5  = Soft Leather
+6  = Hard Leather
+7  = Studded Leather
+8  = Scale
+9  = Studded Scale
+10 = Chain
+11 = Plate
+12 = Silk And Padded Only
+13 = Leather Only
+14 = Scale Only
+15 = Scale And Padded Only
+16 = Chain And Padded Only
+17 = Plate And Chain And Padded Only
+18 = Leather And Scale Only
+19 = Plate Only
+20 = Plate And Padded Only
+21 = Silk And Leather Only
+22 = Robes Only
+23 = Robes And Silk Only
+24 = Robes And Padded Only
+
+
+____________
+
+Item Setup
+
+An item looks like: :0/0/E{}F{}A{}/0;
+
+:ItemID/Dur/E{Enchants}F{Flags}A{Adjectives}/Uses;
+
+
+Now..too add bullets, etc...would have to do something like this:
+
+:0/0/E{}F{}A{}B{0|0|0|0}/0;
+
+B{} is set up like this:
+B{Amount OF Bullets|ItemID|Magical(0 or 1)|MANA cost}
+
+The USES slot is used for MAX BULLETS in the bow/gun item.
+
+In Item database:
+
+Projectile definition:
+
+0;0;0;etc|

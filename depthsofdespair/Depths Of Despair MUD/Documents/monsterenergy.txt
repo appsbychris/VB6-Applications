@@ -1,0 +1,49 @@
+spell format in column.
+
+:SpellID/Energy/Max Use;
+
+
+
+begin.Declare PLAYERHUNGER style.Random = 1,stat.Hunger
+begin.Declare PLAYERSTAMINA style.Random = 1,stat.Stamina
+if check.Message=*help me*
+    if check.IsPlayerAlone()
+        if check.StatCheck(stat.Hunger,signs.<,75)
+            respond.Send,color.BrightYellow & ;The Gods shine bright light on you!;
+            respond.AddHunger,PLAYERHUNGER
+            respond.AddStamina,PLAYERSTAMINA
+            respond.Send,color.Green & ;Your hunger level increases by PLAYERHUNGER, and your stamina level increase by PLAYERSTAMINA!;
+        Onfail(**)
+    onfail(**)
+onfail(**)\\
+if check.Message=*pull lever*
+    if check.IsDoorLocked(1,direction.North)
+        respond.UnLockDoor,1,direction.North
+        respond.OpenDoor,1,direction.North
+        respond.Send,color.Green & ;You hear a clicking in the distance.;
+    onfail(*color.Green & ;You pull a level;*)
+Onfail(**)\\
+if check.Message=*push button*
+    respond.GenMonLoc,1,4
+    respond.GenMonsLoc,2,6,8,3,4
+onfail(**)\\
+if check.Message=*tap desk*
+    respond.PutItemInRoom,73
+    respond.PutItemInRoomLoc,1,19
+    respond.PutItemsInRoom,45,46,47,48
+    respond.PutItemsInRoomLoc,1,45,46,47,48
+    respond.GenMons,1,2,1,2
+onfail(**)\\
+if check.Message=*look up*
+    if check.HaveItem(1)
+        respond.DropFromInv,1
+    onfail(*color.Green & ;You look up.;*)
+onfail(**)\\
+if check.Message=*trade*
+    if check.HasItems(1,2,3,4)
+        respond.TakeItems,1,2,3,4
+    onfail(**)
+    if check.ItemCount(5,signs.>=,3)
+        respond.TakeAllOfItem,5
+    onfail(**)
+onfail(**)\\

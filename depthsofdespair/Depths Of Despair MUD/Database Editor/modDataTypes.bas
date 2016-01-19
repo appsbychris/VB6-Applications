@@ -1,0 +1,452 @@
+Attribute VB_Name = "modDataTypes"
+Public Type UDTPlayers
+    lPlayerID As Long
+    sPlayerName As String
+    sAppearance As String
+    sPlayerPW As String
+    sInventory As String
+    sHead As String
+    sBody As String
+    sTrainStats As String
+    sArms As String
+    sHands As String
+    sLegs As String
+    sFeet As String
+    sWaist As String
+    sSpells As String
+    sOverrideDesc As String
+    sSpellShorts As String
+    sWeapon As String
+    sRace As String
+    sClass As String
+    sMiscFlag As String
+    iStr As Long
+    iAgil As Long
+    iInt As Long
+    iCha As Long
+    iDex As Long
+    iLevel As Long
+    sStatline As String
+    dEXP As Double
+    dEXPNeeded As Double
+    lAppStep As Long
+    iWeapons As Long
+    iArmorType As Long
+    iSpellLevel As Long
+    iSpellType As Long
+    dGold As Double
+    lHP As Long
+    lMaxHP As Long
+    lMana As Long
+    lMaxMana As Long
+    iAC As Long
+    iAcc As Long
+    iCrits As Long
+    iDodge As Long
+    iMaxDamage As Long
+    iFamID As Long
+    sFamName As String
+    lFamCurrentHP As Long
+    lFamMaxHP As Long
+    dFamEXP As Double
+    dMonsterID As Double
+    iIndex As Long
+    lLocation As Long
+    lBackUpLoc As Long
+    iResting As Long
+    iInvitedBy As Long
+    iLeadingParty As Long
+    iPartyLeader As Long
+    sParty As String
+    iCasting As Long
+    sQuest1 As String
+    sQuest2 As String
+    sQuest3 As String
+    sQuest4 As String
+    dBank As Double
+    iEcho As Long
+    iHorse As Long
+    iStun As Long
+    iPlayerAttacking As Long
+    iVision As Long
+    sBlessSpells As String
+    iLives As Long
+    lRoomSearched As Long
+    sGuild As String
+    iGuildLeader As Long
+    sInvitedToGuild As String
+    iEvil As Long
+    sFace As String
+    sEars As String
+    sNeck As String
+    sBack As String
+    sShield As String
+    iIsReadyToTrain As Long
+    iPartyRank As Long
+    iHasAttacked As Long
+    sStatsPlus As String
+    iFlag1 As Long
+    iFlag2 As Long
+    iFlag3 As Long
+    iFlag4 As Long
+    iTrainSlot As Long
+    lPaper As Long
+    sLetters As String
+    iGhostMode As Long
+    sBirthDay As String
+    lAge As Long
+    iDropped As Long
+    iHasSentDropped As Long
+    dClassPoints As Double
+    iClassBonusLevel As Long
+    iGender As Long
+    lClassChanges As Long
+    dTotalEXP As Double
+    dStamina As Double
+    dHunger As Double
+    iSneaking As Long
+    sKillDurItems As String
+    iDebugMode As Long
+    iIsBSing As Long
+    lHasCasted As Long
+    lRegain As Long
+    sElements As String
+    sSeenAs As String
+    sRings(5) As String
+    lCanClear As Long
+End Type
+
+Public Type UDTShops
+    iID As Long
+    sShopName As String
+    iMarkUp As Long
+    iItems(14) As Long
+    iQ(14) As Long
+End Type
+
+Public Type UDTRaces
+    iID As Long
+    sName As String
+    sStats As String
+    dEXP As Double
+    iVision As Long
+    lMaxAge As Long
+    lStartAgeMin As Long
+    lStartAgeMax As Long
+    sHP As String
+End Type
+
+Public Type UDTClasses
+    iID As Long
+    sName As String
+    iWeapon As Long
+    iArmorType As Long
+    iMinMana As Long
+    iMaxMana As Long
+    iSpellType As Long
+    iSpellLevel As Long
+    dEXP As Double
+    iUseMagical As Long
+    dBeginnerMax As Double
+    dIntermediateMax As Double
+    dMasterMax As Double
+    dGuru As Double
+    sBBonus As String
+    sIBonus As String
+    sMBonus As String
+    sGBonus As String
+    sBaseBonus As String
+    sFlags As String
+    'Flags
+    lCanBS As Long
+    lCanSneak As Long
+    iAcc As Long
+    iCrits As Long
+    lHPBonus As Long
+    lMABonus As Long
+    lDamBonus As Long
+    lCPBonus As Long
+    lDodgeBonus As Long
+    lACBonus As Long
+    lVisionBonus As Long
+    lMaxItemsBonus As Long
+    lCanSteal As Long
+End Type
+
+Public Type UDTEmotions
+    iID As Long
+    sSyntax As String
+    sPhraseYou As String
+    sPhraseOthers As String
+    sPhraseToYou As String
+    sPhraseOthers2 As String
+    sPhraseYouToOther As String
+End Type
+
+Public Type UDTFamiliars
+    iID As Long
+    sFamName As String
+    sFlags As String
+    sDescription As String
+    lStartHPMin As Long
+    lStartHPMax As Long
+    dEXPPerLevel As Long
+    lMinDam As Long
+    lMaxDam As Long
+    lLevelMod As Long
+    lLevelMax As Long
+    sAttackMessage As String
+    sMessage2 As String
+    lSwings As Long
+    sMissMessage As String
+    sMissMessage2 As String
+    lRidable As Long
+    lSpeed As Long
+End Type
+
+Public Type UDTItems
+    iID As Long
+    sItemName As String
+    sDamage As String
+    sWorn As String
+    iAC As Long
+    sSwings As String
+    iSpeed As Long
+    iType As Long
+    sDesc As String
+    dCost As Double
+    lLevel As Long
+    iArmorType As Long
+    iLimit As Long
+    iInGame As Long
+    sClassRestriction As String
+    sRaceRestriction As String
+    sMessage2 As String
+    sMessageV As String
+    iMoveable As Long
+    iMagical As Long
+    iIsLedgenary As Long
+    sScript As String
+    lDurability As Long
+    iUses As Long
+    dClassPoints As Double
+    iOnEquipKillDur As Long
+    sFlags As String
+    sFlags2 As String
+    lOnLastUseDoFlags2 As Long
+    sProjectile As String
+End Type
+
+Public Type UDTMap
+    lRoomID As Long
+    sExits As String
+    lNorth As Long
+    lSouth As Long
+    lEast As Long
+    lWest As Long
+    lUp As Long
+    lDown As Long
+    lDN As Long
+    lDS As Long
+    lDE As Long
+    lDW As Long
+    lDNW  As Long
+    lDNE As Long
+    lDSW As Long
+    lDSE As Long
+    lDU As Long
+    lDD As Long
+    lKN As Long
+    lKS As Long
+    lKE As Long
+    lKW As Long
+    lKNW As Long
+    lKNE As Long
+    lKSW As Long
+    lKSE As Long
+    lKU As Long
+    lKD As Long
+    lLight As Long
+    lNorthEast As Long
+    lNorthWest As Long
+    lSouthEast As Long
+    lSouthWest As Long
+    sItems As String
+    sRoomTitle As String
+    sRoomDesc As String
+    sMonsters As String
+    iMaxRegen As Long
+    iType As Long
+    sShopItems As String
+    iMobGroup As Long
+    dGold As Double
+    lSpecialMon As Long
+    lSpecialItem As Long
+    lBN As Long
+    lBS As Long
+    lBE As Long
+    lBW As Long
+    lBNW As Long
+    lBNE As Long
+    lBSW As Long
+    lBSE As Long
+    lBU As Long
+    lBD As Long
+    lPN As Long
+    lPS As Long
+    lPE As Long
+    lPW As Long
+    lPNW As Long
+    lPNE As Long
+    lPSW As Long
+    lPSE As Long
+    lPU As Long
+    lPD As Long
+    sHidden As String
+    sScript As String
+    lDeathRoom As Long
+    iSafeRoom As Long
+    iInDoor As Long
+    sLetters As String
+    sHLetters As String
+    iTrainClass As Long
+    sMapFlags As String
+    sOutDoorFood As String
+End Type
+
+Public Type UDTMonsters
+    lID As Long
+    sMonsterName As String
+    dHP As Double
+    sAttack As String
+    sDesc As String
+    iAC As String
+    dEXP As Double
+    sMessage As String
+    lMobGroup As Long
+    dMoney As Double
+    iAttackable As Long
+    iHostile As Long
+    sDropItem As String
+    lRegenTimeLeft As Long
+    iType As Long
+    lRegenTime As Long
+    sDeathText As String
+    iRoams As Long
+    iEvil As Long
+    iDontAttackIfItem As Long
+    iAtNightMonster As Long
+    iAtDayMonster As Long
+    iDropCorpse As Long
+    iTameToFam As Long
+    sScript As String
+    lLevel As Long
+    sSpells As String
+    lEnergy As Long
+    lPEnergy As Long
+    lWeapon As Long
+End Type
+
+Public Type UDTSpells
+    lID As Long
+    sSpellName As String
+    sShort As String
+    lMinDam As Long
+    lMaxDam As Long
+    iLevelModify As Long
+    iLevelMax As Long
+    iType As Long
+    iLevel As Long
+    sMessage As String
+    iCast As Long
+    lMana As Long
+    iUse As Long
+    lTimeOut As Long
+    sRunOutMessage As String
+    sStatMessage As String
+    iDifficulty As Long
+    sMessage2 As String
+    sMessageV As String
+    sFlags As String
+    lElement As Long
+    sEndCastFlags As String
+End Type
+
+Public Type UDTEvents
+    lEventID As Long
+    lPlayerID As Long
+    sStartTime As String
+    sEndTime As String
+    lIsComplete As Long
+    sExpire As String
+    sCustomID As String
+End Type
+
+Public Type MonsterSpells
+    ldbSpellID As Long
+    lSpellID As Long
+    lEnergy As Long
+    lMaxCast As Long
+    lCurrentCast As Long
+End Type
+
+Public Type Monster
+    mHP                 As Long
+    mMaxHP              As Long
+    mLoc                As Long
+    mName               As String
+    mAc                 As Long
+    mMessage            As String
+    mMoney              As Long
+    mEXP                As Double
+    mMin                As Long
+    mMax                As Long
+    mIsAttacking        As Boolean
+    mPlayerAttacking    As Long
+    mIs_Being_Attacked  As Boolean
+    mAttackable         As Boolean
+    mHostile            As Boolean
+    mDeathText          As String
+    mRoams              As Long
+    mDontAttackIfItem   As Long
+    mAtNightMonster     As Long
+    mAtDayMonster       As Long
+    miID                As Long
+    mHasAttacked        As Long
+    mScript             As String
+    mLevel              As Long
+    mSpells(4)          As MonsterSpells
+    mEnergy             As Long
+    mPEnergy            As Long
+    mTitle              As String
+End Type
+Public Type Weapon
+    wMin        As Long
+    wMax        As Long
+    wSpeed      As Long
+    wMessage    As String
+    wMessage2   As String
+    wMessageV   As String
+    wSpellName  As String
+    wCast       As Long
+    wMana       As Long
+End Type
+
+Public Type UDTLetter
+    lID As Long
+    sMessage As String
+    sTitle As String
+End Type
+
+
+Public dbClass() As UDTClasses
+Public dbEmotions() As UDTEmotions
+Public dbFamiliars() As UDTFamiliars
+Public dbItems() As UDTItems
+Public dbMap() As UDTMap
+Public dbMonsters() As UDTMonsters
+Public dbPlayers() As UDTPlayers
+Public dbRaces() As UDTRaces
+Public dbSpells() As UDTSpells
+Public dbShops() As UDTShops
+Public dbEvents() As UDTEvents

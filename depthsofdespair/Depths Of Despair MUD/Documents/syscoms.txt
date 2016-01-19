@@ -1,0 +1,69 @@
+sys con           <Item#>
+sys tel           <Room#>
+sys add exp       <#>
+sys light         <user name>
+sys hell          <user name>
+sys phase         <(n,s,e,w,u,d,ne,nw,se,sw)>
+sys list users    <>
+sys list items by.<Race>.<Class>.<Level>.<ClassPts>
+sys list items    <>
+sys look inv      <user name>
+sys speak         <user name> <message>
+sys add evil      <#>
+sys ghost         <(0,1)>
+sys list limited  <>
+sys edit <user name> <([------------------------------>
+                        maxhp <#>
+                        maxma <#>
+                        str <#>
+                        int <#>
+                        cha <#>
+                        dex <#>
+                        agil <#>
+                        exp <#>
+                        level <#>
+                        class <(classid,class name)>
+                        hunger <#>
+                        stamina <#>
+                        sysop <(0,1,2)>
+                        lives <#>
+                        gold <#>
+                        vision <#(-5 to 10)>
+                        misc.invisible <(0,1)>
+                        misc.seehidden <(0,1)>
+                        misc.seeinvisible <(0,1)>
+                        misc.gibberish <#(0-4)>
+                        evil <#(1000 or less)>])>
+sys debug         <>
+sys gen mon       <Monsterid>
+sys name          <user name> <new name>
+
+debug.
+      view.
+           roomitems
+           pinv
+           inv.<user name>
+           remoteroomitems.<roomid>
+           pquest
+           classpts.<user name>
+           quest.<user name>
+           date
+           eq
+           mons
+           roomswithmons
+           roomlight
+      edit.
+           time.<# hours>.<# minutes>.<# seconds>
+           classpts.<user name>.<# to modify by>
+           limited.<item name>.<# to modify by>
+           ac.<user name>.<# to modify by>
+           destroyitem.<item id #>
+           roomlight.<-200 to 200>
+           saferoom.<0 or 1>
+           monattack.<monster name in room>.<0 or 1>
+           killmon.<monster name in room>
+      crte.
+           item.<FORMAT: #/#/E{}F{}A{}B{0|0|0|0}/#>
+           door.<n,s,e,w,nw,ne,sw,se,u,d>.<0 or 1>
+      runn.
+           script.<script>

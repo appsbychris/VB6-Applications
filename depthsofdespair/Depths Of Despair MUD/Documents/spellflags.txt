@@ -1,0 +1,38 @@
+tel# 'teleport
+stu# 'stun
+lig# 'light
+cri# 'crits
+acc# 'acc
+dam# 'damage
+str# 'strengh
+agi# 'agility
+cha# 'charm
+dex# 'dexterity
+int# 'intelect
+chp# 'current hp
+mhp# 'max hp
+cma# 'current mana
+mma# 'max mana
+hun# 'hunger
+sta# 'stamina
+cac# 'current AC
+exp# 'current EXP
+txp# 'total exp
+gol# 'gold
+dod# 'dodge
+ban# 'bank
+vis# 'vision
+mit# 'max items
+ccp# 'current CP
+evi# 'evil points
+pap# 'paper
+mit# 'make item
+clp# 'class points
+
+# can equal:
+For tel#
+  #=-1 : Teleport to an adjacent room
+  #=-2 : Teleport to a random room
+For all:
+  #=-3 : Will use the roll for that spell as the number
+  #=any number: Will use the specified number for the adjustment.

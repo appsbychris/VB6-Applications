@@ -1,0 +1,5 @@
+FAM FLAG
+
+id/custom/name/level/expall/exptnl/expneeded/chp/mhp/mindam/maxdam/acc
+
+0/0/0/0/0/0/0/0/0/0/0/0

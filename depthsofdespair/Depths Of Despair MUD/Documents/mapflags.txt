@@ -1,0 +1,1 @@
+type/shop/maxregen/mobgroup/gold/light/saferoom/deathroom/indoor/trainclass/gate/outdoorfood

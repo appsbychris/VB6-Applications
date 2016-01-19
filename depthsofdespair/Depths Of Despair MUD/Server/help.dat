@@ -1,0 +1,30 @@
+race|The race you choose is up to you.  Each race has some advantages and some disadvantages over others.  On some races, you may have a very low exp needed, BUT, your starting stats and hit points may be below average.
+class|You class you choose is up to you.  Each class can come in handy in certain situations.  The better the class is or the more abilities a class has is shown by the amount of EXP the class is.  Remember that when you choose a class with a high EXP table, it is going to cost you more then others to reach the same level.
+attack|Syntax: (a) [monster name] . This will allow you to engage in combat on a monster.
+invite|Syntax: (invite) [player name] . This command will allow someone to join your party.  While they are in your party, they will follow you around.
+join|Syntax: (join) . This will join you to a party in which you were invited to.  By joining some ones party, you will follow them around.
+party|Syntax: (party) . When you type this command in, you will see a list of your party.
+look|Syntax: (l),(l) [item], (l) [player], (l) [monster], (l) [direction] . This command will either look at the current room (if no other command is supplied), or if an item is supplied, it will show you the description of the item, if a player is supplied, you will see what the player has on for armor, and what weapon they are using, and if you supply a monster, you will see it's description.  Last, you can suppy a direction (n,s,e,w,u,d,nw,ne,sw,se) and if there is an exit in that direction, you will see what is there.
+movement|Syntax: (n),(s),(e),(w),(nw),(ne),(sw),(se),(u),(d) .By useing these commands, you can move your character around in the world.
+get|Syntax: (g) [item] . This will pick up the specified item from the floor in the current room
+use|Syntax: (use) [item] .If the item has a use, it will use the specified item
+who|Syntax: (who) . Will list everyone in the game.
+remove|Syntax: (rem) [item] . It will remove the specified item from you
+equip|Syntax: (eq) [item] .It will equip the specified item on you if you can wear it
+list|Syntax: (list) .If you are in a shop, it will list all the items for sale.
+drop|Syntax: (drop) [item name] .Will drop the specified item from your inventory to the room floor.
+buy|Syntax: (buy) [item] .If you are in a shop, and have enough gold, you will buy the specified item.
+stat|Syntax: (stat) .Will show your players stats.
+rest|Syntax: (rest) .Will put you in 'rest mode', regen more HP, and MA per click
+exp|Syntax: (exp) .Will show how much EXP you have, the amount you need to get to the next level, and your percentage to the next level.
+train|Syntax: (train) .If you at a trainer, AND have enough EXP for the next level, you will continue on to the next level.
+brodcast|Syntax: (brod) [What you want to say] .Will send the [text] to everyone in the game.
+sell|Syntax: (sell) [item] .If the item you are trying to sell is sold at the particular shop, you will sell it for 1/3 the buying price
+spells|Syntax: (spells) . Will list all the spells you currently have.
+telepath|Syntax: (/)[user] [text] .Will send the [text] to the specified [user] if he/she is online
+casting|Syntax: (cast) [spell short] {target} .Will cast the specified spell on either you (if no target is selected) or the {target}
+say|Syntax: (say) [text] .This is used for quest.  If you are in a specific room, and you use the 'say' command, if you use the right text, you will advance in the quest
+sysop powers|Syntax: (sys con) [item name] . If you are a sysop, you will conjure the specified item to your inventory. Syntax: (sys tel) [room number] .If you are a sysop, you will teleport to the specified room.  Syntax: (sys add exp) [number] .If you are a sysop, you will gain [number] exp.
+emotions|Syntax: (emotions) .Will list all the available emotions you can do.
+killing familiars|Syntax: (kill fam) .You will brutially kill your familiar if you have one.
+suicide|Syntax: (Suicide) !Y/N! .After inputing 'suicide' you will be prompted with a !Y!es or !N!o question. If you wish to die, press 'Y', otherwise, press 'N'
